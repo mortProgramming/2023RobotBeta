@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Auton.Square;
 
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.util.Auto;
+import frc.robot.util.Control;
 import frc.robot.commands.Teleop.DrivetrainCommand;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -28,47 +30,36 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final Drivetrain drivetrain = Drivetrain.getInstance();
+  // Objects
+  private final Drivetrain drivetrain;
 
-  public static SendableChooser<Command> autonCommandChooser = new SendableChooser<>();
+  // private final Compressor compressor;
 
-  // private final Command DrivetrainCommand = new DrivetrainCommand();
-  // private final Command IntakeCommand = new IntakeCommand();
-  // private final Command ClimberCommand = new ClimberCommand();
-  // private final Command FeederCommand = new FeederCommand();
-  // private final Command ShooterCommand = new ShooterCommand();
-
-  // private final Compressor compressor = new Compressor(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
-
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    Operator.init();
+    //
+    Control.init();
+
+    drivetrain = Drivetrain.getInstance();
+
+    //compressor = new Compressor(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
+
     // compressor.enableAnalog(Constants.COMPRESSER_MIN_PRESSURE, Constants.COMPRESSER_MAX_PRESSURE);
 
-    // Configure the button bindings
-    configureButtonBindings();
     drivetrain.setDefaultCommand(new DrivetrainCommand());
-  }
 
-  /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {}
+    // Configure the button bindings
+    Control.configureBindings();
+
+    Auto.init();
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
-  public void displayChoices(){
-    autonCommandChooser.setDefaultOption("Auton", new Square(22));
-  }
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return autonCommandChooser.getSelected();
+    return Auto.getSelected();
   }
 }
