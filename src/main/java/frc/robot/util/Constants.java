@@ -25,4 +25,12 @@ public final class Constants {
   public static final int PNEUMATIC_PORT = 10;
   public static final int COMPRESSER_MIN_PRESSURE = 80;
   public static final int COMPRESSER_MAX_PRESSURE = 120;
+
+  public static final int OPEN_ARM_PISTON = 1;
+  public static final int CLOSE_ARM_PISTON = 2;
+
+  public static final int ARM_MOTOR = 36;
+
+  public static final int OPEN_CLAW_PISTON = 3;
+  public static final int CLOSE_CLAW_PISTON = 4;
 }

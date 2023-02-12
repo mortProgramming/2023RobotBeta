@@ -1,9 +1,7 @@
 package frc.robot.commands.Called;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.util.Control;
 
 public class Turn extends CommandBase{
     Drivetrain drivetrain;
@@ -27,7 +25,13 @@ public class Turn extends CommandBase{
 
     @Override
     public boolean isFinished() {
-        return drivetrain.turnSetpoint();
+        if(drivetrain.turnSetpoint()){
+            System.out.println("finished");
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public void end(boolean interupted){

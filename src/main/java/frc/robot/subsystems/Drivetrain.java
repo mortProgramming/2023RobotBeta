@@ -35,7 +35,11 @@ public class Drivetrain extends SubsystemBase{
         ahrs = new AHRS(SerialPort.Port.kMXP);
 
         stopPIDController = new PIDController(0,0,0);
+
         turnPIDController = new PIDController(0.005, 0, 0);
+        turnPIDController.setTolerance(1, 5);
+        turnPIDController.enableContinuousInput(-180f, 180f);
+
         balancePIDController = new PIDController(0,0,0);
     }
 

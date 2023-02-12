@@ -6,12 +6,12 @@ import frc.robot.subsystems.Drivetrain;
 public class Stop extends CommandBase{
     Drivetrain drivetrain;
 
-    public Stop(){
+    public Stop() {
         drivetrain = Drivetrain.getInstance();   
         addRequirements(drivetrain);
     }
 
-    public void execute(){
+    public void execute() {
         drivetrain.setPIDStop();
     }
 }

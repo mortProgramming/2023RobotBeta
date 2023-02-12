@@ -11,11 +11,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.commands.Auton.Square;
-
+import frc.robot.subsystems.ArmMotor;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.util.Auto;
 import frc.robot.util.Control;
-import frc.robot.commands.Teleop.DrivetrainCommand;
+import frc.robot.commands.Teleop.ArmMotorControl;
+import frc.robot.commands.Teleop.DrivetrainControl;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
@@ -32,6 +33,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 public class RobotContainer {
   // Objects
   private final Drivetrain drivetrain;
+  private final ArmMotor armMotor;
 
   // private final Compressor compressor;
 
@@ -40,12 +42,14 @@ public class RobotContainer {
     Control.init();
 
     drivetrain = Drivetrain.getInstance();
+    armMotor = ArmMotor.getInstance();
 
     //compressor = new Compressor(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
 
     // compressor.enableAnalog(Constants.COMPRESSER_MIN_PRESSURE, Constants.COMPRESSER_MAX_PRESSURE);
 
-    drivetrain.setDefaultCommand(new DrivetrainCommand());
+    drivetrain.setDefaultCommand(new DrivetrainControl());
+    armMotor.setDefaultCommand(new ArmMotorControl());
 
     // Configure the button bindings
     Control.configureBindings();

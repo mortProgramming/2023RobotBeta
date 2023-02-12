@@ -10,26 +10,26 @@ public class Balance extends CommandBase{
 
     private double littlePitch = 0;
 
-    public Balance(){
+    public Balance() {
         drivetrain = Drivetrain.getInstance();   
         addRequirements(drivetrain);
     }
 
-    public void execute(){
-        if(Logic.lessGreater(-2.5, Drivetrain.getPitch(), 2.5)){
+    public void execute() {
+        if(Logic.lessGreater(-2.5, Drivetrain.getPitch(), 2.5)) {
             littlePitch++;
         }
-        else{
+        else {
             littlePitch = 0;
         }
 
-        if(littlePitch > 25){
+        if(littlePitch > 25) {
             drivetrain.setPIDStop();
         }
-        else if(Logic.lessGreater(-15, Drivetrain.getPitch(), 15)){
+        else if(Logic.lessGreater(-15, Drivetrain.getPitch(), 15)) {
             drivetrain.setBalanceDrivetrain();
         }
-        else{
+        else {
             drivetrain.setUnlimitedAllDrive(-0.05 * Logic.plusNeg(Drivetrain.getPitch()));
         }
     }

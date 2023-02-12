@@ -3,11 +3,11 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.util.Control;
 import frc.robot.Logic;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-public class DrivetrainCommand extends CommandBase{
+public class DrivetrainControl extends CommandBase{
   /** Creates a new Easy. */
   Drivetrain drivetrain;
 
-  public DrivetrainCommand() {
+  public DrivetrainControl() {
     // Use addRequirements() here to declare subsystem dependencies.
     drivetrain = Drivetrain.getInstance();   
     addRequirements(drivetrain);

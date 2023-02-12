@@ -1,9 +1,11 @@
 package frc.robot.util;
 
+import frc.robot.commands.Teleop.ArmPistonControl;
 import frc.robot.commands.Teleop.Balance;
 import frc.robot.commands.Teleop.Stop;
+import frc.robot.commands.Teleop.ClawControl;
 import frc.robot.subsystems.Drivetrain;
-
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -25,6 +27,9 @@ public class Control {
 	public static void configureBindings() {
         rightJoystick.trigger().toggleOnTrue(new Balance());
         rightJoystick.button(2).toggleOnTrue(new Stop());
+
+        xboxController.a().toggleOnTrue(new ClawControl());
+        xboxController.b().toggleOnTrue(new ArmPistonControl());
     }
 
     public static double getLeftJoystickY() {
@@ -38,5 +43,9 @@ public class Control {
     }
     public static double getRightThrottle() {
         return (0.5 * (1 - rightJoystick.getThrottle()));
+    }
+
+    public static double leftControllerJoystickY() {
+        return xboxController.getLeftY();
     }
 }
