@@ -19,8 +19,8 @@ public class DrivetrainControl extends CommandBase{
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      drivetrain.setFullLeftDrive(Control.getLeftJoystickY());
-      drivetrain.setFullRightDrive(Control.getRightJoystickY());
+      drivetrain.setLeftDrive(Control.getLeftJoystickY());
+      drivetrain.setRightDrive(Control.getRightJoystickY());
   }
 
   // Called once the command ends or is interrupted.

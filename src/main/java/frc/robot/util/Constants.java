@@ -17,13 +17,13 @@ public final class Constants {
   public static final int RIGHT_JOYSTICK = 1;
   public static final int XBOX_CONTROLLER = 2;
   
-  public static final int MASTER_LEFT_TALON_PORT = 10;
-  public static final int FOLLOW_LEFT_TALON_PORT = 9;
-  public static final int MASTER_RIGHT_TALON_PORT = 4;
-  public static final int FOLLOW_RIGHT_TALON_PORT = 5;
+  public static final int MASTER_LEFT_TALON_PORT = 4;
+  public static final int FOLLOW_LEFT_TALON_PORT = 3;
+  public static final int MASTER_RIGHT_TALON_PORT = 1;
+  public static final int FOLLOW_RIGHT_TALON_PORT = 2;
 
   public static final int PNEUMATIC_PORT = 10;
-  public static final int COMPRESSER_MIN_PRESSURE = 80;
+  public static final int COMPRESSER_MIN_PRESSURE = 100;
   public static final int COMPRESSER_MAX_PRESSURE = 120;
 
   //dsacco10@gmail.com

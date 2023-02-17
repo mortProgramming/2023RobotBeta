@@ -20,7 +20,7 @@ public class ArmPiston extends SubsystemBase{
         return armPiston;
     }
     public void setArmPiston(boolean setArmPiston) {
-        if(setArmPiston == true){
+        if(setArmPiston == false){
             piston.set(DoubleSolenoid.Value.kForward);
         }
         else{
