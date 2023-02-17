@@ -1,26 +1,22 @@
-package frc.robot.commands.Teleop;
+package frc.robot.commands.Defaults;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Claw;
 
-public class ClawControl extends CommandBase{
+public class ClawDefault extends CommandBase{
     Claw claw;
 
-    public ClawControl() {
+    public ClawDefault() {
         claw = Claw.getInstance();
 
         addRequirements(claw);
     }
 
     public void execute() {
-        claw.setClaw(true);
+        claw.setClaw(false);
     }
 
     public boolean isFinished() {
         return false;
-    }
-
-    public void end(boolean interrupted) {
-        claw.setClaw(false);
     }
 }

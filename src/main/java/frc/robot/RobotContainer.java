@@ -9,16 +9,18 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
 import edu.wpi.first.wpilibj2.command.Command;
-
-import frc.robot.commands.Auton.Square;
+import frc.robot.commands.Control.ArmMotorControl;
+import frc.robot.commands.Control.DrivetrainControl;
+import frc.robot.commands.Defaults.ArmPistonDefault;
+import frc.robot.commands.Defaults.ClawDefault;
 import frc.robot.subsystems.ArmMotor;
+import frc.robot.subsystems.ArmPiston;
+import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.util.Auto;
 import frc.robot.util.Control;
-import frc.robot.commands.Teleop.ArmMotorControl;
-import frc.robot.commands.Teleop.DrivetrainControl;
-
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.util.Constants;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -34,22 +36,27 @@ public class RobotContainer {
   // Objects
   private final Drivetrain drivetrain;
   private final ArmMotor armMotor;
+  private final ArmPiston armPiston;
+  private final Claw claw;
 
-  // private final Compressor compressor;
+  private final Compressor compressor;
 
   public RobotContainer() {
-    //
+    compressor = new Compressor(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
+
+    compressor.enableDigital();
+  
     Control.init();
 
     drivetrain = Drivetrain.getInstance();
     armMotor = ArmMotor.getInstance();
-
-    //compressor = new Compressor(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
-
-    // compressor.enableAnalog(Constants.COMPRESSER_MIN_PRESSURE, Constants.COMPRESSER_MAX_PRESSURE);
+    armPiston = ArmPiston.getInstance();
+    claw = Claw.getInstance();
 
     drivetrain.setDefaultCommand(new DrivetrainControl());
     armMotor.setDefaultCommand(new ArmMotorControl());
+    armPiston.setDefaultCommand(new ArmPistonDefault());
+    claw.setDefaultCommand(new ClawDefault());
 
     // Configure the button bindings
     Control.configureBindings();

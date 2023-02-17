@@ -26,7 +26,7 @@ public class ArmMotor extends SubsystemBase{
     }
 
     public void setArmMotor(double speed) {
-        motor.set(speed);
+        motor.set(speed * 0.2);
     }
 
     public void setArmMotorPID(double speed){

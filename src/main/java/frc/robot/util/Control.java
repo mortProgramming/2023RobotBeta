@@ -1,12 +1,11 @@
 package frc.robot.util;
 
-import frc.robot.commands.Teleop.ArmPistonControl;
-import frc.robot.commands.Teleop.Balance;
-import frc.robot.commands.Teleop.Stop;
-import frc.robot.commands.Teleop.ClawControl;
+// import frc.robot.commands.Assistance.Balance;
+// import frc.robot.commands.Assistance.Stop;
+import frc.robot.commands.Control.ArmPistonControl;
+import frc.robot.commands.Control.ClawControl;
 import frc.robot.subsystems.Drivetrain;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+// import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
@@ -25,11 +24,14 @@ public class Control {
 		drivetrain = Drivetrain.getInstance();
 	}
 	public static void configureBindings() {
-        rightJoystick.trigger().toggleOnTrue(new Balance());
-        rightJoystick.button(2).toggleOnTrue(new Stop());
+        // rightJoystick.trigger().toggleOnTrue(new Balance());
+        // rightJoystick.button(2).toggleOnTrue(new Stop());
 
-        xboxController.a().toggleOnTrue(new ClawControl());
-        xboxController.b().toggleOnTrue(new ArmPistonControl());
+        xboxController.a().toggleOnTrue(new ClawControl(true));
+        xboxController.a().toggleOnFalse(new ClawControl(false));
+
+        xboxController.b().toggleOnTrue(new ArmPistonControl(true));
+        xboxController.b().toggleOnFalse(new ArmPistonControl(false));
     }
 
     public static double getLeftJoystickY() {

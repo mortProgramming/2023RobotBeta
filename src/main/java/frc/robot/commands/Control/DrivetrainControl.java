@@ -1,7 +1,6 @@
-package frc.robot.commands.Teleop;
+package frc.robot.commands.Control;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.util.Control;
-import frc.robot.Logic;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 public class DrivetrainControl extends CommandBase{
   /** Creates a new Easy. */
@@ -20,8 +19,8 @@ public class DrivetrainControl extends CommandBase{
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      drivetrain.setLeftDrive(Control.getLeftJoystickY());
-      drivetrain.setUnlimitedRightDrive(Control.getRightJoystickY());
+      drivetrain.setFullLeftDrive(Control.getLeftJoystickY());
+      drivetrain.setFullRightDrive(Control.getRightJoystickY());
   }
 
   // Called once the command ends or is interrupted.
