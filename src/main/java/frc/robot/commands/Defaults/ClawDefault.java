@@ -12,7 +12,7 @@ public class ClawDefault extends CommandBase{
         addRequirements(claw);
     }
 
-    public void execute() {
+    public void initialize() {
         claw.setClaw(false);
     }
 

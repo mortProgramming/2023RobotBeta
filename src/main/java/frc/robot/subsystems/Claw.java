@@ -19,6 +19,7 @@ public class Claw extends SubsystemBase{
         }
         return claw;
     }
+
     public void setClaw(boolean setting) {
         if(setting == true){
             piston.set(DoubleSolenoid.Value.kForward);
@@ -27,6 +28,31 @@ public class Claw extends SubsystemBase{
             piston.set(DoubleSolenoid.Value.kReverse);
         }
     }
+
+    public void setMultiClaw(int setClaw) {
+        if(setClaw == 0) {
+            piston.set(DoubleSolenoid.Value.kForward);
+        }
+        else if(setClaw == 1) {
+            piston.set(DoubleSolenoid.Value.kReverse);
+        }
+        else if(setClaw == 2) {
+            piston.toggle();
+        }
+    }
+
+    public void trueClaw() {
+        piston.set(DoubleSolenoid.Value.kForward);
+    }
+
+    public void falseClaw() {
+        piston.set(DoubleSolenoid.Value.kReverse);
+    }
+
+    public void toggleClaw() {
+        piston.toggle();
+    }
+
     public DoubleSolenoid.Value getPiston() {
         return piston.get();
     }

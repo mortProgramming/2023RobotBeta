@@ -6,14 +6,18 @@ import frc.robot.subsystems.Drivetrain;
 
 public class TimedDrive extends CommandBase{
     Drivetrain drivetrain;
-    private double speed;
-    private double inputTime;
+
+    private double time;
+    private double leftSpeed;
+    private double rightSpeed;
 
     private Timer timer = new Timer();
 
-    public TimedDrive(double speed, double inputTime) {
-        this.speed = speed;
-        this.inputTime = inputTime;
+    public TimedDrive(double time, double leftSpeed, double rightSpeed) {
+        this.time = time;
+        this.leftSpeed = leftSpeed;
+        this.rightSpeed = rightSpeed;
+
         drivetrain = Drivetrain.getInstance();
 
         addRequirements(drivetrain);
@@ -25,11 +29,11 @@ public class TimedDrive extends CommandBase{
     }
 
     public void execute() {
-        drivetrain.setFullAllDrive(speed);
+        drivetrain.setFullDrive(leftSpeed, rightSpeed);
     }
 
     public boolean isFinished() {
-        return timer.get() > inputTime;
+        return timer.get() > time;
     }
 
     public void end(boolean interupted){

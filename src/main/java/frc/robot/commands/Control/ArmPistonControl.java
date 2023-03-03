@@ -5,9 +5,9 @@ import frc.robot.subsystems.ArmPiston;
 
 public class ArmPistonControl extends CommandBase{
     ArmPiston armPiston;
-    private boolean setting;
+    private int setting;
 
-    public ArmPistonControl(boolean setting) {
+    public ArmPistonControl(int setting) {
         this.setting = setting;
 
         armPiston = ArmPiston.getInstance();
@@ -15,12 +15,13 @@ public class ArmPistonControl extends CommandBase{
         addRequirements(armPiston);
     }
 
-    public void execute() {
-        armPiston.setArmPiston(setting);
+    @Override
+    public void initialize() {
+        armPiston.setMultiArmPiston(setting);
     }
 
     public boolean isFinished() {
-        return false;
+        return true;
     }
 
     public void end(boolean interrupted) {}

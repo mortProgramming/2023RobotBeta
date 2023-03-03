@@ -5,17 +5,17 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.util.Constants;
 
-public class PneumaticHub extends SubsystemBase{
-    private static PneumaticHub pneumaticHub;
+public class PneumaticsHub extends SubsystemBase{
+    private static PneumaticsHub pneumaticHub;
     private static Compressor compressor;
 
-    private PneumaticHub() {
+    private PneumaticsHub() {
         compressor = new Compressor(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
     }
 
-    public static PneumaticHub getInstance() {
+    public static PneumaticsHub getInstance() {
         if(pneumaticHub == null){
-            pneumaticHub = new PneumaticHub();
+            pneumaticHub = new PneumaticsHub();
         }
         return pneumaticHub;
     }
@@ -26,5 +26,9 @@ public class PneumaticHub extends SubsystemBase{
 
     public void setCompressorAnalog(){
         compressor.enableAnalog(Constants.COMPRESSER_MIN_PRESSURE, Constants.COMPRESSER_MAX_PRESSURE);
+    }
+
+    public double getPressure() {
+        return compressor.getPressure();
     }
 }

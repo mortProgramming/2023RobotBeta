@@ -5,7 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.XboxController;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -21,6 +21,7 @@ import frc.robot.util.Auto;
 import frc.robot.util.Control;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.util.Constants;
+import frc.robot.subsystems.PneumaticsHub;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -38,13 +39,14 @@ public class RobotContainer {
   private final ArmMotor armMotor;
   private final ArmPiston armPiston;
   private final Claw claw;
+  private final PneumaticsHub pneumaticsHub;
 
-  private final Compressor compressor;
+  // private final Compressor compressor;
 
   public RobotContainer() {
-    compressor = new Compressor(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
+    // compressor = new Compressor(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
 
-    compressor.enableDigital();
+    // compressor.enableDigital();
   
     Control.init();
 
@@ -52,11 +54,9 @@ public class RobotContainer {
     armMotor = ArmMotor.getInstance();
     armPiston = ArmPiston.getInstance();
     claw = Claw.getInstance();
+    pneumaticsHub = PneumaticsHub.getInstance();
 
-    drivetrain.setDefaultCommand(new DrivetrainControl());
-    armMotor.setDefaultCommand(new ArmMotorControl());
-    armPiston.setDefaultCommand(new ArmPistonDefault());
-    claw.setDefaultCommand(new ClawDefault());
+    pneumaticsHub.setCompressorDigital();
 
     // Configure the button bindings
     Control.configureBindings();

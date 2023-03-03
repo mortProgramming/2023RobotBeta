@@ -23,10 +23,35 @@ public class ArmPiston extends SubsystemBase{
         if(setArmPiston == false){
             piston.set(DoubleSolenoid.Value.kForward);
         }
-        else{
+        else if(setArmPiston == true){
             piston.set(DoubleSolenoid.Value.kReverse);
         }
     }
+
+    public void setMultiArmPiston(int setArmPiston) {
+        if(setArmPiston == 0) {
+            piston.set(DoubleSolenoid.Value.kForward);
+        }
+        else if(setArmPiston == 1) {
+            piston.set(DoubleSolenoid.Value.kReverse);
+        }
+        else if(setArmPiston == 2) {
+            piston.toggle();
+        }
+    }
+
+    public void trueArmPiston() {
+        piston.set(DoubleSolenoid.Value.kReverse);
+    }
+
+    public void falseArmPiston() {
+        piston.set(DoubleSolenoid.Value.kForward);
+    }
+
+    public void toggleArmPiston() {
+        piston.toggle();
+    }
+
     public DoubleSolenoid.Value getPiston() {
         return piston.get();
     }

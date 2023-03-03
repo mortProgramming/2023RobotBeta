@@ -1,6 +1,7 @@
 package frc.robot.util;
 
 public class Logic {
+
     public static boolean pressedLogic(boolean newInput, boolean oldInput){
         if(newInput == true && oldInput == false){
             return true;
@@ -9,6 +10,7 @@ public class Logic {
             return false;
         }
     }
+
     public static boolean unPressedLogic(boolean newInput, boolean oldInput){
         if(newInput == false && oldInput == true){
             return true;
@@ -17,6 +19,7 @@ public class Logic {
             return false;
         }
     }
+
     public static boolean pressed2ToggleLogic(boolean pressed, boolean oldAlternate){
         if(pressed == true){
             if(oldAlternate == true){
@@ -30,6 +33,7 @@ public class Logic {
             return oldAlternate;
         }
     }
+
     public static int pressedMultiToggleLogic(boolean pressed, int oldAlternate, int numPressed){
         if(pressed == true){
             if(oldAlternate < numPressed){
@@ -43,6 +47,7 @@ public class Logic {
             return oldAlternate;
         }
     }
+
     public static boolean lessGreater(double begin, double current, double end){
        if(current > begin && current < end){
         return true;
@@ -51,6 +56,7 @@ public class Logic {
         return false;
        }
     }
+
     public static int plusNeg(double input){
         if(input < 0){
             return -1;
@@ -62,4 +68,48 @@ public class Logic {
             return 1;
         }
     }
+
+    public static double deadband(double value, double deadband) {
+
+		if (Math.abs(value) > deadband) {
+
+			if (value > 0.0) {
+				return (value - deadband) / (1.0 - deadband);
+			} 
+            else {
+				return (value + deadband) / (1.0 - deadband);
+			}
+		} 
+        
+        else {
+			return 0.0;
+		}
+	}
+
+    private static double modifyAxis2(double value, double throttleValue) {
+		// Deadband
+		value = deadband(value, 0.1);
+
+		// Square the axis
+		// value = Math.copySign(value * value, value);
+
+		throttleValue = (throttleValue + 1) / 2;
+
+		double minValue = 0.2;
+		double maxValue = 0.6;
+		return value * (throttleValue * (maxValue - minValue) + minValue);
+	}
+
+    public static double modifyAxis(double value, double throttleValue) {
+		// Deadband
+		value = deadband(value, 0.1);
+
+		// Square the axis
+		value = Math.copySign(value * value, value);
+
+		// takes the throttle value and takes it from [-1, 1] to [0.2, 1], and
+		// multiplies it by the
+		// value
+		return value * (throttleValue * -0.4 + 0.6);
+	}
 }

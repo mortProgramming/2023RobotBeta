@@ -7,13 +7,22 @@ import frc.robot.util.Control;
 public class ArmMotorControl extends CommandBase{
     ArmMotor armMotor;
 
-    public ArmMotorControl() {
+    private static double speed;
+
+    public ArmMotorControl(double speed) {
+
+        this.speed = speed;
+
         armMotor = ArmMotor.getInstance();
 
         addRequirements(armMotor);
     }
 
     public void execute() {
-        armMotor.setArmMotor(Control.leftControllerJoystickY());
+        armMotor.setArmMotor(speed);
+    }
+
+    public boolean isFinished() {
+        return false;
     }
 }

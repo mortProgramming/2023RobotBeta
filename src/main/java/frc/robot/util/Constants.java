@@ -17,10 +17,10 @@ public final class Constants {
   public static final int RIGHT_JOYSTICK = 1;
   public static final int XBOX_CONTROLLER = 2;
   
-  public static final int MASTER_LEFT_TALON_PORT = 4;
-  public static final int FOLLOW_LEFT_TALON_PORT = 3;
-  public static final int MASTER_RIGHT_TALON_PORT = 1;
-  public static final int FOLLOW_RIGHT_TALON_PORT = 2;
+  public static final int MASTER_LEFT_TALON = 4;
+  public static final int FOLLOW_LEFT_TALON = 3;
+  public static final int MASTER_RIGHT_TALON = 1;
+  public static final int FOLLOW_RIGHT_TALON = 2;
 
   public static final int PNEUMATIC_PORT = 10;
   public static final int COMPRESSER_MIN_PRESSURE = 100;
@@ -32,7 +32,7 @@ public final class Constants {
   public static final int OPEN_ARM_PISTON = 1;
   public static final int CLOSE_ARM_PISTON = 2;
 
-  public static final int ARM_MOTOR = 8;
+  public static final int ARM_MOTOR = 5;
 
   public static final int OPEN_CLAW_PISTON = 8;
   public static final int CLOSE_CLAW_PISTON = 9;

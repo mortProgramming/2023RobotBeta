@@ -5,22 +5,22 @@ import frc.robot.subsystems.Claw;
 
 public class ClawControl extends CommandBase{
     Claw claw;
-    private boolean setting;
+    private int setting;
 
-    public ClawControl(boolean setting) {
-        this.setting = setting;        
+    public ClawControl(int setting) {
+        this.setting = setting;   
 
         claw = Claw.getInstance();
 
         addRequirements(claw);
     }
 
-    public void execute() {
-        claw.setClaw(setting);
+    public void initialize() {
+        claw.setMultiClaw(setting);
     }
 
     public boolean isFinished() {
-        return false;
+        return true;
     }
 
     public void end(boolean interrupted) { }

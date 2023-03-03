@@ -37,6 +37,4 @@ public class Turn extends CommandBase{
     public void end(boolean interupted){
         drivetrain.setStop();
     }
-
-    
 }

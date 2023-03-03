@@ -15,7 +15,7 @@ public class ArmMotor extends SubsystemBase{
     
     private ArmMotor(){
         motor = new CANSparkMax(Constants.ARM_MOTOR, MotorType.kBrushless);
-        armMotorController =  new PIDController(0.0125, 0, 0);
+        armMotorController =  new PIDController(0.01, 0, 0);
     }
 
     public static ArmMotor getInstance() {
@@ -26,11 +26,11 @@ public class ArmMotor extends SubsystemBase{
     }
 
     public void setArmMotor(double speed) {
-        motor.set(speed * 0.2);
+        motor.set(speed * 0.3);
     }
 
     public void setArmMotorPID(double speed){
-        motor.setVoltage(armMotorController.calculate(motor.getEncoder().getVelocity(), speed));
+        motor.set(armMotorController.calculate(motor.getEncoder().getVelocity(), speed));
     }
 
     public double displayArmMotorVal(){
