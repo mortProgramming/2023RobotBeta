@@ -9,8 +9,11 @@ import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
 
 import frc.robot.subsystems.Drivetrain;
-// import frc.robot.commands.Auton.Square;
-import frc.robot.commands.Auton.HoldPiece;
+import frc.robot.commands.Auton.LBlue;
+import frc.robot.commands.Auton.MBlue;
+import frc.robot.commands.Auton.RBlue;
+import frc.robot.commands.Called.ScorePiece;
+import frc.robot.commands.TestAuton.Tester1;
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -50,11 +53,14 @@ public class Auto {
 	}
 
 	public static void addAutoOptions() {
-		// By default, the nothing option is selected
 		// autoChooser.setDefaultOption("nothing", null);
 		// autoChooser.addOption("Square", new Square());
-		autoChooser.setDefaultOption("HoldPiece", new HoldPiece());
-		// autoChooser.addOption("Test", autoFromPathGroup("Test"));
+		// autoChooser.setDefaultOption("HoldPiece", new HoldPiece());
+		autoChooser.setDefaultOption("Tester", new Tester1());
+		autoChooser.addOption("RBlue", new RBlue());
+		autoChooser.addOption("MBlue", new MBlue());
+		autoChooser.addOption("LBlue", new LBlue());
+		// autoChooser.setDefaultOption("Test", autoFromPathGroup("Test"));
 	}
 
 	public static CommandBase autoFromPathGroup(String name) {

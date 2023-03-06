@@ -1,4 +1,4 @@
-package frc.robot.commands.Assistance;
+package frc.robot.commands.Called;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
@@ -27,6 +27,10 @@ public class Balance extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return false;
+        return drivetrain.getBalanceController().atSetpoint();
+    }
+
+    public void end() {
+        drivetrain.setFullDrive(0, 0);
     }
 }

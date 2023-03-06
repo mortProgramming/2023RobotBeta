@@ -20,12 +20,15 @@ public class Turn extends CommandBase{
     }
 
     public void execute() {
-        drivetrain.setTurnPID(angle, oldAngle);
+        drivetrain.setFullDrive(
+            drivetrain.getTurnController().calculate(Drivetrain.getYaw(), oldAngle + angle),
+            drivetrain.getTurnController().calculate(Drivetrain.getYaw(), oldAngle + angle)
+        );
     }
 
     @Override
     public boolean isFinished() {
-        if(drivetrain.turnSetpoint()){
+        if(drivetrain.getTurnController().atSetpoint()){
             System.out.println("finished");
             return true;
         }
@@ -35,6 +38,6 @@ public class Turn extends CommandBase{
     }
 
     public void end(boolean interupted){
-        drivetrain.setStop();
+        drivetrain.setFullDrive(0, 0);
     }
 }

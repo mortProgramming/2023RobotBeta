@@ -86,30 +86,26 @@ public class Logic {
 		}
 	}
 
-    private static double modifyAxis2(double value, double throttleValue) {
-		// Deadband
+    private static double modifyAxis(double value, double throttleValue) {
 		value = deadband(value, 0.1);
-
-		// Square the axis
-		// value = Math.copySign(value * value, value);
 
 		throttleValue = (throttleValue + 1) / 2;
 
-		double minValue = 0.2;
-		double maxValue = 0.6;
+		double minValue = 0;
+		double maxValue = 1;
 		return value * (throttleValue * (maxValue - minValue) + minValue);
 	}
 
-    public static double modifyAxis(double value, double throttleValue) {
-		// Deadband
+    public static double modifySquareAxis(double value, double throttleValue) {
 		value = deadband(value, 0.1);
 
 		// Square the axis
 		value = Math.copySign(value * value, value);
 
-		// takes the throttle value and takes it from [-1, 1] to [0.2, 1], and
-		// multiplies it by the
-		// value
-		return value * (throttleValue * -0.4 + 0.6);
+		throttleValue = (throttleValue + 1) / 2;
+
+		double minValue = 0;
+		double maxValue = 1;
+		return value * (throttleValue * (maxValue - minValue) + minValue);
 	}
 }

@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.util.Control;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.MjpegServer;
+import edu.wpi.first.cscore.UsbCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -30,7 +33,14 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+
     m_robotContainer = new RobotContainer();
+
+    // UsbCamera camera = new UsbCamera("camera", 0);
+		// MjpegServer mjpegServer = new MjpegServer("Usb Camera", 1181);
+		// mjpegServer.setSource(camera);
+		
+		// CameraServer.startAutomaticCapture();
   }
 
   /**
@@ -50,6 +60,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Pitch", Drivetrain.getPitch());
     SmartDashboard.putNumber("Roll", Drivetrain.getRoll());
     SmartDashboard.putNumber("Yaw", Drivetrain.getYaw());
+    SmartDashboard.updateValues();
     CommandScheduler.getInstance().run();
   }
 

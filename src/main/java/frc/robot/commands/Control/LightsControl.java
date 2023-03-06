@@ -6,11 +6,12 @@ import frc.robot.subsystems.Lights;
 public class LightsControl extends CommandBase{
     private Lights lights;
     private boolean setting;
-    private int lightNum;
+    private int settingNum;
 
-    public LightsControl(int lightNum, boolean setting) {
-        this.setting = setting;
-        this.lightNum = lightNum;
+    // public LightsControl(int settingNum, boolean setting) {
+    public LightsControl(int settingNum) {
+        // this.setting = setting;
+        this.settingNum = settingNum;
 
         lights = Lights.getInstance();
 
@@ -18,7 +19,8 @@ public class LightsControl extends CommandBase{
     }
 
     public void initialize() {
-        lights.setLights(lightNum, setting);
+        // lights.setLights(lightNum, setting);
+        lights.setLights(settingNum);
     }
 
     public boolean isFinished() {

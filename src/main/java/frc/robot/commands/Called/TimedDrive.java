@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 
-public class TimedDrive extends CommandBase{
+public class TimedDrive extends CommandBase {
     Drivetrain drivetrain;
 
     private double time;
@@ -37,6 +37,6 @@ public class TimedDrive extends CommandBase{
     }
 
     public void end(boolean interupted){
-        drivetrain.setStop();
+        drivetrain.setFullDrive(0, 0);
     }
 }

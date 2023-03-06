@@ -22,19 +22,19 @@ public class Claw extends SubsystemBase{
 
     public void setClaw(boolean setting) {
         if(setting == true){
-            piston.set(DoubleSolenoid.Value.kForward);
+            piston.set(DoubleSolenoid.Value.kReverse);
         }
         else{
-            piston.set(DoubleSolenoid.Value.kReverse);
+            piston.set(DoubleSolenoid.Value.kForward);
         }
     }
 
     public void setMultiClaw(int setClaw) {
-        if(setClaw == 0) {
-            piston.set(DoubleSolenoid.Value.kForward);
-        }
-        else if(setClaw == 1) {
+        if(setClaw == 1) {
             piston.set(DoubleSolenoid.Value.kReverse);
+        }
+        else if(setClaw == 0) {
+            piston.set(DoubleSolenoid.Value.kForward);
         }
         else if(setClaw == 2) {
             piston.toggle();

@@ -7,14 +7,22 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.util.Constants;
 
 public class ArmMotor extends SubsystemBase{
-    
     private static ArmMotor armMotor;
-    private CANSparkMax motor;
+
+    private CANSparkMax leftMotor;
+    private CANSparkMax rightMotor;
+
     private PIDController armMotorController;
+
+
+    private int direction;
+    private double input;
 
     
     private ArmMotor(){
-        motor = new CANSparkMax(Constants.ARM_MOTOR, MotorType.kBrushless);
+        leftMotor = new CANSparkMax(Constants.LEFT_ARM_MOTOR, MotorType.kBrushless);
+        rightMotor = new CANSparkMax(Constants.RIGHT_ARM_MOTOR, MotorType.kBrushless);
+
         armMotorController =  new PIDController(0.01, 0, 0);
     }
 
@@ -26,14 +34,29 @@ public class ArmMotor extends SubsystemBase{
     }
 
     public void setArmMotor(double speed) {
-        motor.set(speed * 0.3);
+        leftMotor.set(speed * 0.3);
+        rightMotor.set(speed * 0.3);
     }
 
     public void setArmMotorPID(double speed){
-        motor.set(armMotorController.calculate(motor.getEncoder().getVelocity(), speed));
+        input = armMotorController.calculate(leftMotor.getEncoder().getVelocity(), speed);
+        leftMotor.set(input);
+        rightMotor.set(input);
     }
 
     public double displayArmMotorVal(){
-        return motor.getEncoder().getVelocity();
+        return leftMotor.getEncoder().getVelocity();
+    }
+
+    public void setDirectionForward() {
+        direction = 1;
+    }
+
+    public void setDirectionReverse() {
+        direction = -1;
+    }
+
+    public double getDirection() {
+        return direction;
     }
 }

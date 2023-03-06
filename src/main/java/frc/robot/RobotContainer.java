@@ -58,6 +58,8 @@ public class RobotContainer {
 
     pneumaticsHub.setCompressorDigital();
 
+    Control.setDefaultCommands();
+
     // Configure the button bindings
     Control.configureBindings();
 

@@ -1,43 +1,36 @@
 package frc.robot.commands.Control;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.util.Control;
+import frc.robot.util.Logic;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class DrivetrainControl extends CommandBase{
-  /** Creates a new Easy. */
+public class DrivetrainControl extends CommandBase {
   Drivetrain drivetrain;
 
-  private static double leftSpeed;
-  private static double rightSpeed;
-
-  public DrivetrainControl(double leftSpeed, double rightSpeed) {
-
-    this.leftSpeed = leftSpeed;
-    this.rightSpeed = rightSpeed;
-
+  public DrivetrainControl() {
     drivetrain = Drivetrain.getInstance(); 
 
     addRequirements(drivetrain);
   }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
   public void execute() {
-      drivetrain.setDrive(leftSpeed, rightSpeed);
-      // drivetrain.setLeftDrive(Control.getLeftJoystickY());
-      // drivetrain.setRightDrive(Control.getRightJoystickY());
+    // if(drivetrain.getDirection() == 1) {
+    //   drivetrain.setDrive(Control.getLeftJoystickY(), Control.getRightJoystickY());
+    // }
+    // else {
+    //   drivetrain.setDrive(-Control.getRightJoystickY(), -Control.getLeftJoystickY());
+    // }
+
+    if(drivetrain.getDirection() == 1) {
+      drivetrain.setFullDrive(Logic.modifySquareAxis(Control.getLeftJoystickY(), Control.getLeftThrottle()),
+        Logic.modifySquareAxis(Control.getRightJoystickY(), Control.getLeftThrottle()));
+    }
+    else {
+      drivetrain.setFullDrive(Logic.modifySquareAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()),
+        Logic.modifySquareAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()));
+    }
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
   public boolean isFinished() {
     return false;
   }

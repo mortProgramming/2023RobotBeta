@@ -32,7 +32,8 @@ public final class Constants {
   public static final int OPEN_ARM_PISTON = 1;
   public static final int CLOSE_ARM_PISTON = 2;
 
-  public static final int ARM_MOTOR = 5;
+  public static final int LEFT_ARM_MOTOR = 5;
+  public static final int RIGHT_ARM_MOTOR = 6;
 
   public static final int OPEN_CLAW_PISTON = 8;
   public static final int CLOSE_CLAW_PISTON = 9;

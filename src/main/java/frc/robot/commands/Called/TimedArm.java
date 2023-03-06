@@ -64,11 +64,11 @@ public class TimedArm extends CommandBase{
     public void initialize() {
         timer.reset();
         timer.start();
-        new ArmMotorControl(speed);
+        armMotor.setArmMotor(speed);
     }
 
     public void execute() {
-        new ArmMotorControl(speed);
+        armMotor.setArmMotor(speed);
         System.out.println("going");
     }
 
@@ -77,6 +77,6 @@ public class TimedArm extends CommandBase{
     }
 
     public void end(boolean interupted){
-        new ArmMotorControl(0);
+        armMotor.setArmMotor(0);
     }
 }

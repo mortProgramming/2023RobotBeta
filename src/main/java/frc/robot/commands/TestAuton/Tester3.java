@@ -1,22 +1,23 @@
-package frc.robot.commands.Auton;
+package frc.robot.commands.TestAuton;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.Called.TimedArm;
+import frc.robot.commands.Called.Balance;
+// import frc.robot.commands.Called.TimedArm;
 import frc.robot.commands.Called.TimedDrive;
 import frc.robot.commands.Called.Wait;
 import frc.robot.commands.Control.ArmPistonControl;
 import frc.robot.commands.Control.ClawControl;
 
-public class Tester extends SequentialCommandGroup {
+public class Tester3 extends SequentialCommandGroup {
 
-    public Tester() {
+    public Tester3() {
 
         addCommands(
-            
+
             new SequentialCommandGroup(
 
-                new TimedArm(-3, 10)
+                new Balance()
 
             )
         );
