@@ -86,26 +86,28 @@ public class Logic {
 		}
 	}
 
-    private static double modifyAxis(double value, double throttleValue) {
-		value = deadband(value, 0.1);
+    public static double modifyAxis(double value, double throttleValue) {
+		value = deadband(value, Constants.DEAD_BAND);
 
 		throttleValue = (throttleValue + 1) / 2;
 
-		double minValue = 0;
-		double maxValue = 1;
-		return value * (throttleValue * (maxValue - minValue) + minValue);
+		return value * (throttleValue * (Constants.MAX_THROTTLE - Constants.MIN_THROTTLE) + Constants.MIN_THROTTLE);
 	}
 
     public static double modifySquareAxis(double value, double throttleValue) {
-		value = deadband(value, 0.1);
+		value = deadband(value, Constants.DEAD_BAND);
 
 		// Square the axis
 		value = Math.copySign(value * value, value);
 
 		throttleValue = (throttleValue + 1) / 2;
 
-		double minValue = 0;
-		double maxValue = 1;
-		return value * (throttleValue * (maxValue - minValue) + minValue);
+		return value * (throttleValue * (Constants.MAX_THROTTLE - Constants.MIN_THROTTLE) + Constants.MIN_THROTTLE);
 	}
+
+    public static double ArmStabalize(double encoderValue) {
+        return Math.sin((Constants.ARM_MOTOR_ENCODER_TOTAL_DEGREES / 2) * 
+        (((encoderValue - Constants.ARM_MOTOR_ENCODER_MIN) / (Constants.ARM_MOTOR_ENCODER_MAX - Constants.ARM_MOTOR_ENCODER_MIN)) * 2 - 1)
+        );
+    }
 }

@@ -31,7 +31,7 @@ public class MBlue extends SequentialCommandGroup {
                     )
                 ),
                 new TimedArm(1, 0.3),
-                new TimedDrive(1.5, -1, -1),
+                new TimedDrive(1.5, -0.5, -0.5),
                 new Balance()
             )
         );

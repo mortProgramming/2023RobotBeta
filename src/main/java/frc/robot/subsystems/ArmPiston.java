@@ -52,7 +52,7 @@ public class ArmPiston extends SubsystemBase{
         piston.toggle();
     }
 
-    public DoubleSolenoid.Value getPiston() {
+    public DoubleSolenoid.Value getArmPiston() {
         return piston.get();
     }
 }

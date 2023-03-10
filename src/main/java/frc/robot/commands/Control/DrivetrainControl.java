@@ -21,14 +21,19 @@ public class DrivetrainControl extends CommandBase {
     //   drivetrain.setDrive(-Control.getRightJoystickY(), -Control.getLeftJoystickY());
     // }
 
-    if(drivetrain.getDirection() == 1) {
-      drivetrain.setFullDrive(Logic.modifySquareAxis(Control.getLeftJoystickY(), Control.getLeftThrottle()),
-        Logic.modifySquareAxis(Control.getRightJoystickY(), Control.getLeftThrottle()));
-    }
-    else {
-      drivetrain.setFullDrive(Logic.modifySquareAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()),
-        Logic.modifySquareAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()));
-    }
+    // if(drivetrain.getDirection() == 1) {
+    //   drivetrain.setFullDrive(Logic.modifySquareAxis(Control.getLeftJoystickY(), Control.getLeftThrottle()),
+    //     Logic.modifySquareAxis(Control.getRightJoystickY(), Control.getLeftThrottle()));
+    // }
+    // else {
+    //   drivetrain.setFullDrive(Logic.modifySquareAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()),
+    //     Logic.modifySquareAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()));
+    // }
+
+    // drivetrain.setDrive(Control.getLeftJoystickY(), Control.getRightJoystickY());
+
+    drivetrain.setFullDrive(Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()),
+    Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()));
   }
 
   public boolean isFinished() {

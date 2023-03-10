@@ -28,7 +28,6 @@ public final class Constants {
 
   //dsacco10@gmail.com
 
-  // not sure abt these ports yet!!!
   public static final int OPEN_ARM_PISTON = 1;
   public static final int CLOSE_ARM_PISTON = 2;
 
@@ -37,4 +36,14 @@ public final class Constants {
 
   public static final int OPEN_CLAW_PISTON = 8;
   public static final int CLOSE_CLAW_PISTON = 9;
+
+  public static final double ARM_MOTOR_ENCODER_MAX = 100;
+  public static final double ARM_MOTOR_ENCODER_MIN = -100;
+  public static final double ARM_MOTOR_ENCODER_TOTAL_DEGREES = 180;
+  public static final double ARM_IN_SIN_CONSTANT = 0;
+  public static final double ARM_OUT_SIN_CONSTANT = 0;
+
+  public static final double DEAD_BAND = 0.03;
+  public static final double MIN_THROTTLE = 0;
+  public static final double MAX_THROTTLE = 1;
 }

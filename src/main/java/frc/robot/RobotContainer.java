@@ -60,7 +60,6 @@ public class RobotContainer {
 
     Control.setDefaultCommands();
 
-    // Configure the button bindings
     Control.configureBindings();
 
     Auto.init();

@@ -59,13 +59,13 @@ public class Control {
     }
 
 	public static void configureBindings() {
-        leftJoystick.trigger().toggleOnTrue(
-            Commands.startEnd(drivetrain::setDirectionForward, drivetrain::setDirectionReverse, drivetrain)
-        );
+        // leftJoystick.trigger().toggleOnTrue(
+        //     Commands.startEnd(drivetrain::setDirectionForward, drivetrain::setDirectionReverse, drivetrain)
+        // );
 
-        xboxController.leftStick().toggleOnTrue(
-            Commands.startEnd(armMotor::setDirectionForward, armMotor::setDirectionReverse, armMotor)
-        );
+        // xboxController.x().toggleOnTrue(
+        //     Commands.startEnd(armMotor::setDirectionForward, armMotor::setDirectionReverse, armMotor)
+        // );
 
         rightJoystick.trigger().whileTrue(new Balance());
         rightJoystick.button(2).whileTrue(new Stop());

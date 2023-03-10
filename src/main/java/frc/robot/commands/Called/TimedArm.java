@@ -22,11 +22,11 @@
 //     public void initialize() {
 //         timer.reset();
 //         timer.start();
-//         armMotor.setArmMotor(speed);
+//         armMotor.setAutoArmMotor(speed);
 //     }
 
 //     public void execute() {
-//         armMotor.setArmMotor(speed);
+//         armMotor.setAutoArmMotor(speed);
 //         System.out.println("going");
 //     }
 
@@ -35,7 +35,7 @@
 //     }
 
 //     public void end(boolean interupted){
-//         armMotor.setArmMotor(0);
+//         armMotor.setAutoArmMotor(0);
 //     }
 // }
 
@@ -77,6 +77,6 @@ public class TimedArm extends CommandBase{
     }
 
     public void end(boolean interupted){
-        armMotor.setArmMotor(0);
+        armMotor.setAutoArmMotor(0);
     }
 }

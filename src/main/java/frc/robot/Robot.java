@@ -8,7 +8,12 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Control.ArmMotorControl;
+import frc.robot.subsystems.ArmMotor;
+import frc.robot.subsystems.ArmPiston;
+import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Lights;
 import frc.robot.util.Control;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.MjpegServer;
@@ -25,6 +30,12 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  private static Drivetrain drivetrain;
+    private static ArmMotor armMotor;
+    private static ArmPiston armPiston;
+    private static Claw claw;
+    private static Lights lights;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -36,11 +47,13 @@ public class Robot extends TimedRobot {
 
     m_robotContainer = new RobotContainer();
 
-    // UsbCamera camera = new UsbCamera("camera", 0);
-		// MjpegServer mjpegServer = new MjpegServer("Usb Camera", 1181);
-		// mjpegServer.setSource(camera);
-		
-		// CameraServer.startAutomaticCapture();
+		CameraServer.startAutomaticCapture();
+
+    drivetrain = Drivetrain.getInstance();
+        armPiston = ArmPiston.getInstance();
+        armMotor = ArmMotor.getInstance();
+        claw = Claw.getInstance();
+        lights = Lights.getInstance();
   }
 
   /**
@@ -75,6 +88,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    armMotor.setDefaultCommand(null);
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -95,11 +109,14 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    armMotor.setDefaultCommand(new ArmMotorControl());
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    // armMotor.setDefaultCommand(new ArmMotorControl());
+  }
 
   @Override
   public void testInit() {
