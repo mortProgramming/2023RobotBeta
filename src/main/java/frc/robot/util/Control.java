@@ -55,7 +55,7 @@ public class Control {
         // claw.setDefaultCommand(new ClawDefault());
         new ArmMotorControl();
         armPiston.setArmPiston(false);
-        claw.setClaw(false);
+        // claw.setClaw(false);
     }
 
 	public static void configureBindings() {
@@ -67,8 +67,8 @@ public class Control {
         //     Commands.startEnd(armMotor::setDirectionForward, armMotor::setDirectionReverse, armMotor)
         // );
 
-        rightJoystick.trigger().whileTrue(new Balance());
-        rightJoystick.button(2).whileTrue(new Stop());
+        rightJoystick.button(2).whileTrue(new Balance());
+        rightJoystick.button(3).whileTrue(new Stop());
         // leftJoystick.trigger().onTrue(new DrivetrainControl)
 
         xboxController.a().onTrue(new ClawControl(1));

@@ -22,7 +22,7 @@ public class ScorePiece extends SequentialCommandGroup {
                         new ArmPistonControl(1),
                         new Wait(1),
                         new ClawControl(0),
-                        new TimedArm(0.5, -0.2),
+                        // new TimedArm(0.5, -0.2),
                         new ArmPistonControl(0)
                     )
                 ),

@@ -9,10 +9,12 @@ import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
 
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.commands.Auton.JustBalance;
 import frc.robot.commands.Auton.LBlue;
-import frc.robot.commands.Auton.MBlue;
-import frc.robot.commands.Auton.RBlue;
+import frc.robot.commands.Auton.PieceBalance;
+import frc.robot.commands.Auton.PieceTaxi;
 import frc.robot.commands.Called.ScorePiece;
+import frc.robot.commands.Called.Taxi;
 import frc.robot.commands.TestAuton.Tester1;
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -53,13 +55,13 @@ public class Auto {
 	}
 
 	public static void addAutoOptions() {
-		// autoChooser.setDefaultOption("nothing", null);
-		// autoChooser.addOption("Square", new Square());
-		// autoChooser.setDefaultOption("HoldPiece", new HoldPiece());
-		autoChooser.setDefaultOption("Tester", new Tester1());
-		autoChooser.addOption("RBlue", new RBlue());
-		autoChooser.addOption("MBlue", new MBlue());
-		autoChooser.addOption("LBlue", new LBlue());
+		autoChooser.setDefaultOption("nothing", null);
+		autoChooser.addOption("JustPiece", new ScorePiece());
+		autoChooser.addOption("JustTaxi", new Taxi());
+		autoChooser.addOption("JustBalance", new JustBalance());
+		autoChooser.addOption("PieceTaxi", new PieceTaxi());
+		autoChooser.addOption("PieceBalance", new PieceBalance());
+		autoChooser.addOption("Tester1", new Tester1());
 		// autoChooser.setDefaultOption("Test", autoFromPathGroup("Test"));
 	}
 

@@ -32,8 +32,8 @@ public class DrivetrainControl extends CommandBase {
 
     // drivetrain.setDrive(Control.getLeftJoystickY(), Control.getRightJoystickY());
 
-    drivetrain.setFullDrive(Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()),
-    Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()));
+    drivetrain.setFullDrive(Logic.modifySquareAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()),
+    Logic.modifySquareAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()));
   }
 
   public boolean isFinished() {
