@@ -59,6 +59,8 @@ public class TimedArm extends CommandBase{
         this.speed = speed;
 
         armMotor = ArmMotor.getInstance();
+
+        addRequirements(armMotor);
     }
 
     public void initialize() {
