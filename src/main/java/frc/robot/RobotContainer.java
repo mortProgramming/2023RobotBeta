@@ -20,7 +20,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.util.Auto;
 import frc.robot.util.Control;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import frc.robot.util.Constants;
+import static frc.robot.util.Constants.*;
 import frc.robot.subsystems.PneumaticsHub;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -44,7 +44,7 @@ public class RobotContainer {
   // private final Compressor compressor;
 
   public RobotContainer() {
-    // compressor = new Compressor(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
+    // compressor = new Compressor(PNEUMATIC_PORT, PneumaticsModuleType.REVPH);
 
     // compressor.enableDigital();
   

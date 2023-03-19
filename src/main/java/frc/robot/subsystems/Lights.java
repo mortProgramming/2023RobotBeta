@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import static frc.robot.util.Constants.*;
 
 public class Lights extends SubsystemBase {
     private static Lights lights;
@@ -11,9 +12,9 @@ public class Lights extends SubsystemBase {
     private static DigitalOutput light3;
 
     public Lights() {
-        light1 = new DigitalOutput(1);
-        light2 = new DigitalOutput(2);
-        light3 = new DigitalOutput(3);
+        light1 = new DigitalOutput(LIGHT_2);
+        light2 = new DigitalOutput(LIGHT_1);
+        light3 = new DigitalOutput(LIGHT_3);
     }
 
     public static Lights getInstance() {

@@ -1,5 +1,7 @@
 package frc.robot.util;
 
+import static frc.robot.util.Constants.*;
+
 public class Logic {
 
     public static boolean pressedLogic(boolean newInput, boolean oldInput){
@@ -87,27 +89,60 @@ public class Logic {
 	}
 
     public static double modifyAxis(double value, double throttleValue) {
-		value = deadband(value, Constants.DEAD_BAND);
+		value = deadband(value, DEAD_BAND);
 
 		throttleValue = (throttleValue + 1) / 2;
 
-		return value * (throttleValue * (Constants.MAX_THROTTLE - Constants.MIN_THROTTLE) + Constants.MIN_THROTTLE);
+		return value * (throttleValue * (MAX_THROTTLE - MIN_THROTTLE) + MIN_THROTTLE);
 	}
 
     public static double modifySquareAxis(double value, double throttleValue) {
-		value = deadband(value, Constants.DEAD_BAND);
+		value = deadband(value, DEAD_BAND);
 
 		// Square the axis
 		value = Math.copySign(value * value, value);
 
 		throttleValue = (throttleValue + 1) / 2;
 
-		return value * (throttleValue * (Constants.MAX_THROTTLE - Constants.MIN_THROTTLE) + Constants.MIN_THROTTLE);
+		return value * (throttleValue * (MAX_THROTTLE - MIN_THROTTLE) + MIN_THROTTLE);
 	}
 
-    public static double ArmStabalize(double encoderValue) {
-        return Math.sin((Constants.ARM_MOTOR_ENCODER_TOTAL_DEGREES / 2) * 
-        (((encoderValue - Constants.ARM_MOTOR_ENCODER_MIN) / (Constants.ARM_MOTOR_ENCODER_MAX - Constants.ARM_MOTOR_ENCODER_MIN)) * 2 - 1)
-        );
+    public static double modifyCubicAxis(double value, double throttleValue) {
+		value = deadband(value, DEAD_BAND);
+
+		value = Math.copySign(value * value * value, value);
+
+		throttleValue = (throttleValue + 1) / 2;
+
+		return value * (throttleValue * (MAX_THROTTLE - MIN_THROTTLE) + MIN_THROTTLE);
+	}
+
+    public static double armStabalize(double encoderValue) {
+        return Math.sin(Math.toRadians(armMotorPositionToDegrees(encoderValue)));
+    }
+
+    // public static double armMotorPositionToDegrees(double encoderValue) {
+    //     return (encoderValue - ARM_MOTOR_ENCODER_MIN) / ARM_POSITION_TO_DEGREES + ARM_MOTOR_ENCODER_TO_0_DEGREES;
+    // }
+
+    // public static double armMotorDegreesToPosition(double degrees) {
+    //     return ((degrees - ARM_MOTOR_ENCODER_TO_0_DEGREES) * ARM_POSITION_TO_DEGREES) + ARM_MOTOR_ENCODER_MIN;
+    // }
+
+    public static double armMotorPositionToDegrees(double encoderValue) {
+        return (encoderValue + ARM_MOTOR_ENCODER_TO_0_DEGREES) / ARM_POSITION_TO_DEGREES;
+    }
+
+    public static double armMotorDegreesToPosition(double degrees) {
+        return (degrees * ARM_POSITION_TO_DEGREES) - ARM_MOTOR_ENCODER_TO_0_DEGREES;
+    }
+
+    public static double scale(double scalingValue, double constant) {
+        if(constant > 0) {
+            return scalingValue * (1 - constant) + constant; 
+        }
+        else {
+            return scalingValue * (1 + constant) - constant; 
+        }
     }
 }

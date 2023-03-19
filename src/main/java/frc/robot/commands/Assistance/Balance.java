@@ -16,17 +16,20 @@ public class Balance extends CommandBase {
 
     public void execute() {
         input = -Drivetrain.getPitch();
-        if(input < 10 && input > -10) {
-            drivetrain.setFullDrive(0, 0);
-        }
-        else {
-            drivetrain.setFullDrive(drivetrain.getBalanceController().calculate(input), drivetrain.getBalanceController().calculate(input));
-        }
-        System.out.println(input);
+        // if(input < 10 && input > -10) {
+        //     drivetrain.setFullDrive(0, 0);
+        // }
+        // else {
+            drivetrain.setFullDrive(drivetrain.getAssistBalanceController().calculate(input), drivetrain.getAutoBalanceController().calculate(input));
+        // }
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return drivetrain.getAssistBalanceController().atSetpoint();
+    }
+
+    public void end() {
+        new Stop();
     }
 }

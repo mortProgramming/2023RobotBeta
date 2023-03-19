@@ -11,7 +11,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.util.Constants;
+import frc.robot.commands.Control.DrivetrainControl;
+import static frc.robot.util.Constants.*;
 import frc.robot.util.Control;
 
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -32,16 +33,20 @@ public class Drivetrain extends SubsystemBase{
     public DifferentialDriveKinematics driveKinematics;
 
     private PIDController stopController;
-    private PIDController balanceController;
+    private PIDController autoBalanceController;
+    private PIDController assistBalanceController;
     private PIDController turnController;
 
     private double direction;
+    private double sensitivity;
+
+    private boolean commandOff;
     
     private Drivetrain() {
-        masterLeftTalon = new CANSparkMax(Constants.MASTER_LEFT_TALON, MotorType.kBrushless);
-        masterRightTalon = new CANSparkMax(Constants.MASTER_RIGHT_TALON, MotorType.kBrushless);
-        followLeftTalon = new CANSparkMax(Constants.FOLLOW_LEFT_TALON, MotorType.kBrushless);
-        followRightTalon = new CANSparkMax(Constants.FOLLOW_RIGHT_TALON, MotorType.kBrushless);
+        masterLeftTalon = new CANSparkMax(MASTER_LEFT_TALON, MotorType.kBrushless);
+        masterRightTalon = new CANSparkMax(MASTER_RIGHT_TALON, MotorType.kBrushless);
+        followLeftTalon = new CANSparkMax(FOLLOW_LEFT_TALON, MotorType.kBrushless);
+        followRightTalon = new CANSparkMax(FOLLOW_RIGHT_TALON, MotorType.kBrushless);
 
         followLeftTalon.follow(masterLeftTalon);
         followRightTalon.follow(masterRightTalon);
@@ -57,15 +62,21 @@ public class Drivetrain extends SubsystemBase{
                 pose2d
         );
 
-        stopController = new PIDController(0,0,0);
+        stopController = new PIDController(0.0005,0.0002,0);
 
         turnController = new PIDController(0.005, 0, 0);
         turnController.setTolerance(1, 5);
         turnController.enableContinuousInput(-180f, 180f);
 
-        balanceController = new PIDController(0.01,0,0.01);
-        balanceController.setTolerance(2.5, 0);
-        balanceController.setSetpoint(0);
+        autoBalanceController = new PIDController(0.01,0,0.01);
+        autoBalanceController.setTolerance(2.5, 0);
+        autoBalanceController.setSetpoint(0);
+
+        assistBalanceController = new PIDController(0.01,0,0.01);
+        assistBalanceController.setTolerance(2.5, 0);
+        assistBalanceController.setSetpoint(0);
+
+        sensitivity = 1;
     }
 
     public static Drivetrain getInstance() {
@@ -130,20 +141,52 @@ public class Drivetrain extends SubsystemBase{
         masterRightTalon.set(rightMotorSpeed);
     }
 
-    public void setDirectionForward() {
-        direction = 1;
-    }
+    // public void setDirectionForward() {
+    //     direction = 1;
+    // }
 
-    public void setDirectionReverse() {
-        direction = -1;
-    }
+    // public void setDirectionReverse() {
+    //     direction = -1;
+    // }
 
-    public double getDirection() {
-        return direction;
-    }
+    // public double getDirection() {
+    //     return direction;
+    // }
+
+    // public void setDirectionForward() {
+    //     direction = 1;
+    //     drivetrain.setDefaultCommand(new DrivetrainControl(sensitivity));
+    // }
+
+    // public void setDirectionReverse() {
+    //     direction = -1;
+    //     drivetrain.setDefaultCommand(new DrivetrainControl(-sensitivity));
+    // }
+
+    // public void commandOff() {
+    //     commandOff = true;
+    // }
+
+    // public boolean getCommandOff() {
+    //     return commandOff;
+    // }
+
+    // public void setLowSensitivity() {
+    //     sensitivity = LOW_SENSITIVITY;
+    //     drivetrain.setDefaultCommand(new DrivetrainControl(direction * LOW_SENSITIVITY));
+    // }
+
+    // public void setNormalSensitivity() {
+    //     sensitivity = 1;
+    //     drivetrain.setDefaultCommand(new DrivetrainControl(direction));
+    // }
     
-    public PIDController getBalanceController() {
-        return balanceController;
+    public PIDController getAutoBalanceController() {
+        return autoBalanceController;
+    }
+
+    public PIDController getAssistBalanceController() {
+        return assistBalanceController;
     }
 
     public PIDController getStopController() {
@@ -153,13 +196,4 @@ public class Drivetrain extends SubsystemBase{
     public PIDController getTurnController() {
         return turnController;
     }
-    
-    public void setTurnPID(double degrees, double oldYaw) {
-        masterLeftTalon.set(turnController.calculate(Drivetrain.getYaw(), (degrees + oldYaw)));
-        masterRightTalon.set(turnController.calculate(Drivetrain.getYaw(), (degrees + oldYaw)));
-    }
-    
-    public boolean turnSetpoint() {
-        return turnController.atSetpoint();
-     }
 }

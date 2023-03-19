@@ -14,7 +14,9 @@ import frc.robot.subsystems.ArmPiston;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Lights;
+import frc.robot.subsystems.PneumaticsHub;
 import frc.robot.util.Control;
+import frc.robot.util.Logic;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.MjpegServer;
 import edu.wpi.first.cscore.UsbCamera;
@@ -35,6 +37,7 @@ public class Robot extends TimedRobot {
     private static ArmPiston armPiston;
     private static Claw claw;
     private static Lights lights;
+    private static PneumaticsHub pneumaticsHub;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -54,6 +57,7 @@ public class Robot extends TimedRobot {
         armMotor = ArmMotor.getInstance();
         claw = Claw.getInstance();
         lights = Lights.getInstance();
+        pneumaticsHub = PneumaticsHub.getInstance();
   }
 
   /**
@@ -73,6 +77,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Pitch", Drivetrain.getPitch());
     SmartDashboard.putNumber("Roll", Drivetrain.getRoll());
     SmartDashboard.putNumber("Yaw", Drivetrain.getYaw());
+    SmartDashboard.putNumber("Encoder", armMotor.getArmMotorVal());
+    SmartDashboard.putNumber("Degrees", Logic.armMotorPositionToDegrees(armMotor.getArmMotorVal()));
+    SmartDashboard.putNumber("Pressure", pneumaticsHub.getPressure());
     SmartDashboard.updateValues();
     CommandScheduler.getInstance().run();
   }

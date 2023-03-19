@@ -13,6 +13,7 @@ package frc.robot.util;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
   public static final int LEFT_JOYSTICK = 0;
   public static final int RIGHT_JOYSTICK = 1;
   public static final int XBOX_CONTROLLER = 2;
@@ -21,6 +22,13 @@ public final class Constants {
   public static final int FOLLOW_LEFT_TALON = 3;
   public static final int MASTER_RIGHT_TALON = 1;
   public static final int FOLLOW_RIGHT_TALON = 2;
+
+  public static final int LIGHT_1 = 1;
+  public static final int LIGHT_2 = 2;
+  public static final int LIGHT_3 = 3;
+
+  public static final int ENCODER_1 = 8;
+  public static final int ENCODER_2 = 9;
 
   public static final int PNEUMATIC_PORT = 10;
   public static final int COMPRESSER_MIN_PRESSURE = 100;
@@ -37,13 +45,18 @@ public final class Constants {
   public static final int OPEN_CLAW_PISTON = 8;
   public static final int CLOSE_CLAW_PISTON = 9;
 
-  public static final double ARM_MOTOR_ENCODER_MAX = 100;
-  public static final double ARM_MOTOR_ENCODER_MIN = -100;
-  public static final double ARM_MOTOR_ENCODER_TOTAL_DEGREES = 180;
-  public static final double ARM_IN_SIN_CONSTANT = 0;
-  public static final double ARM_OUT_SIN_CONSTANT = 0;
+  public static final int LEFT_CLAW_MOTOR = 7;
+  public static final int RIGHT_CLAW_MOTOR = 8;
+
+  public static final double ARM_MOTOR_ENCODER_MIN = -470;
+  public static final double ARM_MOTOR_ENCODER_TO_0_DEGREES = -5;
+  public static final double ARM_IN_SIN_CONSTANT = 0.05;
+  public static final double ARM_OUT_SIN_CONSTANT = 0.05;
+  public static final double ARM_POSITION_TO_DEGREES = 6;
+
 
   public static final double DEAD_BAND = 0.03;
   public static final double MIN_THROTTLE = 0;
   public static final double MAX_THROTTLE = 1;
+  public static final double LOW_SENSITIVITY = 0.3;
 }

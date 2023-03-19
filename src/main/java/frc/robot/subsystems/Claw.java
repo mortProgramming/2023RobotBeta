@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import frc.robot.util.Constants;
+import static frc.robot.util.Constants.*;
 
 public class Claw extends SubsystemBase{
     private static Claw claw;
@@ -10,7 +10,7 @@ public class Claw extends SubsystemBase{
     private static DoubleSolenoid piston;
 
     private Claw() {
-        piston = new DoubleSolenoid(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH, Constants.OPEN_CLAW_PISTON, Constants.CLOSE_CLAW_PISTON);
+        piston = new DoubleSolenoid(PNEUMATIC_PORT, PneumaticsModuleType.REVPH, OPEN_CLAW_PISTON, CLOSE_CLAW_PISTON);
     }
     
     public static Claw getInstance() {
@@ -57,32 +57,3 @@ public class Claw extends SubsystemBase{
         return piston.get();
     }
 }
-
-// package frc.robot.subsystems;
-// import edu.wpi.first.wpilibj2.command.SubsystemBase;
-// import edu.wpi.first.wpilibj.PneumaticsModuleType;
-// import edu.wpi.first.wpilibj.Solenoid;
-// import frc.robot.util.Constants;
-
-// public class Claw extends SubsystemBase{
-//     private static Claw claw;
-
-//     private static Solenoid piston;
-
-//     private Claw() {
-//         piston = new Solenoid(Constants.PNEUMATIC_PORT, PneumaticsModuleType.REVPH, Constants.OPEN_CLAW_PISTON);
-//     }
-    
-//     public static Claw getInstance() {
-//         if(claw == null){
-//             claw = new Claw();
-//         }
-//         return claw;
-//     }
-//     public void setClaw(boolean clawPosition) {
-//         piston.set(clawPosition);
-//     }
-//     public boolean getPiston() {
-//         return piston.get();
-//     }
-// }

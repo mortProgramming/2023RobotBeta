@@ -4,8 +4,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.util.Constants;
+import frc.robot.commands.Control.ArmMotorControl;
+import static frc.robot.util.Constants.*;
 
 public class ArmMotor extends SubsystemBase{
     private static ArmMotor armMotor;
@@ -13,18 +15,24 @@ public class ArmMotor extends SubsystemBase{
     private CANSparkMax leftMotor;
     private CANSparkMax rightMotor;
 
-    private PIDController armMotorController;
+    private Encoder encoder;
+
+    private PIDController armMotorDegreeController;
     private ArmFeedforward armFeedForward;
 
     private int direction = 1;
     private double input;
 
     
-    private ArmMotor(){
-        leftMotor = new CANSparkMax(Constants.LEFT_ARM_MOTOR, MotorType.kBrushless);
-        rightMotor = new CANSparkMax(Constants.RIGHT_ARM_MOTOR, MotorType.kBrushless);
+    private ArmMotor() {
+        leftMotor = new CANSparkMax(LEFT_ARM_MOTOR, MotorType.kBrushless);
+        rightMotor = new CANSparkMax(RIGHT_ARM_MOTOR, MotorType.kBrushless);
 
-        armMotorController =  new PIDController(0.01, 0, 0);
+        encoder = new Encoder(ENCODER_1, ENCODER_2, false, Encoder.EncodingType.k4X);
+
+        armMotorDegreeController =  new PIDController(0.0001, 0, 0);
+        armMotorDegreeController.setTolerance(1);
+
         armFeedForward = new ArmFeedforward(0, 0, 0, 0);
     }
 
@@ -40,35 +48,28 @@ public class ArmMotor extends SubsystemBase{
     }
 
     public void setArmMotor(double speed) {
-        leftMotor.set(speed * 0.3);
-        rightMotor.set(speed * 0.3);
+        leftMotor.set(speed * 0.5);
+        rightMotor.set(speed * 0.5);
     }
 
     public void setAutoArmMotor(double speed) {
-        leftMotor.set(speed * 0.3);
-        rightMotor.set(speed * 0.3);
+        leftMotor.set(speed);
+        rightMotor.set(speed);
     }
 
-    // public void setArmMotorPID(double speed){
-    //     input = armMotorController.calculate(leftMotor.getEncoder().getVelocity(), speed) + 
-    //     armFeedForward.calculate();
-    //     leftMotor.set(input);
-    //     rightMotor.set(input);
+    public PIDController getArmDegreeController() {
+        return armMotorDegreeController;
+    }
+
+    public double getArmMotorVal(){
+        return encoder.getDistance();
+    }
+
+    // public void setDirectionForward() {
+    //     armMotor.setDefaultCommand(new ArmMotorControl(1));
     // }
 
-    public double displayArmMotorVal(){
-        return leftMotor.getEncoder().getVelocity();
-    }
-
-    public void setDirectionForward() {
-        direction = 1;
-    }
-
-    public void setDirectionReverse() {
-        direction = -1;
-    }
-
-    public int getDirection() {
-        return direction;
-    }
+    // public void setDirectionReverse() {
+    //     armMotor.setDefaultCommand(new ArmMotorControl(-1));
+    // }
 }

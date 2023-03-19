@@ -1,0 +1,32 @@
+package frc.robot.commands.Control;
+import frc.robot.subsystems.ClawMotor;
+import frc.robot.util.Control;
+import frc.robot.util.Logic;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import static frc.robot.util.Constants.*;
+
+public class ClawMotorControl extends CommandBase {
+  ClawMotor clawMotor;
+
+  public ClawMotorControl() {
+  clawMotor = ClawMotor.getInstance(); 
+
+    addRequirements(clawMotor);
+  }
+
+  public void execute() {
+    if(Control.getXboxController().getXButton()) {
+        clawMotor.setClawMotor(1);
+    }
+    else if(Control.getXboxController().getBButton()) {
+        clawMotor.setClawMotor(-1);
+    }
+    else {
+        clawMotor.setClawMotor(0);
+    }
+  }
+
+  public boolean isFinished() {
+    return false;
+  }
+}
