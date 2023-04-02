@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.math.controller.ArmFeedforward;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,7 +18,7 @@ public class ArmMotor extends SubsystemBase{
     private DutyCycleEncoder encoder;
 
     private PIDController armMotorDegreeController;
-    private ArmFeedforward armFeedForward;
+    private SimpleMotorFeedforward armFeedForward;
 
     private int direction = 1;
     private double input;
@@ -30,10 +30,10 @@ public class ArmMotor extends SubsystemBase{
 
         encoder = new DutyCycleEncoder(ENCODER_1);
 
-        armMotorDegreeController =  new PIDController(0.000001, 0, 0);
-        armMotorDegreeController.setTolerance(1);
+        armMotorDegreeController =  new PIDController(8, 0.5, 0);
+        armMotorDegreeController.setTolerance(0.05);
 
-        armFeedForward = new ArmFeedforward(0, 0, 0, 0);
+        //armFeedForward = new SimpleMotorFeedforward(0.059774, 13.034, 0.62803); not working
     }
 
     public static ArmMotor getInstance() {
@@ -69,6 +69,9 @@ public class ArmMotor extends SubsystemBase{
         return encoder.isConnected();
     }
 
+    public SimpleMotorFeedforward simplefeedford() {
+        return armFeedForward;
+    }
     // public void setDirectionForward() {
     //     armMotor.setDefaultCommand(new ArmMotorControl(1));
     // }

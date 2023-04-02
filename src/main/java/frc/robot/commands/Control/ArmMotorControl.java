@@ -79,7 +79,8 @@ public class ArmMotorControl extends CommandBase {
         //     ));
         // }
 
-        armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY());
+         armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY());
+        //armMotor.setArmMotor(armMotor.simplefeedford().calculate(Control.getLeftControllerJoystickY()));
 
         // System.out.println(armMotor.getArmMotorVal());
     }

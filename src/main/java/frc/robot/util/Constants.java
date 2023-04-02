@@ -47,11 +47,11 @@ public final class Constants {
   public static final int LEFT_CLAW_MOTOR = 7;
   public static final int RIGHT_CLAW_MOTOR = 8;
 
-  public static final double ARM_MOTOR_ENCODER_MIN = -0;
-  public static final double ARM_MOTOR_ENCODER_TO_0_DEGREES = -0.8;
+  //public static final double ARM_MOTOR_ENCODER_MIN = -0;
+  public static final double ARM_MOTOR_ENCODER_TO_0_DEGREES = -0.80;
   public static final double ARM_IN_SIN_CONSTANT = 0.05;
   public static final double ARM_OUT_SIN_CONSTANT = 0.05;
-  public static final double ARM_POSITION_TO_DEGREES = 360;
+  public static final double ARM_POSITION_TO_DEGREES = 340;
 
 
   public static final double DEAD_BAND = 0.03;

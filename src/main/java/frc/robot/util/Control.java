@@ -96,6 +96,8 @@ public class Control {
         xboxController.a().onTrue(new ClawControl(1));
         xboxController.y().onTrue(new ClawControl(0));
         xboxController.start().onTrue(new ArmToDegree(90));
+        xboxController.rightStick().onTrue(new ArmMotorControl());
+
 
         xboxController.b().onTrue(new ClawMotorControl(0.5));
         xboxController.b().onFalse(new ClawMotorControl(0));

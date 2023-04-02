@@ -23,11 +23,12 @@ public class ArmToDegree extends CommandBase {
     }
 
     public void execute() {
-        armMotor.setAutoArmMotor(armMotor.getArmDegreeController().calculate(armMotor.getArmMotorVal(), wantedPosition));
+        armMotor.setAutoArmMotor(-armMotor.getArmDegreeController().calculate(armMotor.getArmMotorVal(), wantedPosition));
     }
 
     public boolean isFinished() {
         return armMotor.getArmDegreeController().atSetpoint();
+        // return false;
     }
 
     public void end() {
