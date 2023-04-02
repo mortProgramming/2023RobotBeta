@@ -1,19 +1,19 @@
-package frc.robot.commands.Auton;
+package frc.robot.commands.Auton.Cone;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Called.CalledBalance;
-import frc.robot.commands.Called.RollBalance;
-import frc.robot.commands.Called.Score;
-import frc.robot.commands.Called.TimedDrive;
+import frc.robot.commands.Called.Arm.ConeScore;
+import frc.robot.commands.Called.Drivetrain.RollBalance;
+import frc.robot.commands.Called.Drivetrain.TimedDrive;
 
-public class ScoreTaxiBalance extends SequentialCommandGroup {
+public class ConeTaxiBalance extends SequentialCommandGroup {
 
-    public ScoreTaxiBalance() {
+    public ConeTaxiBalance() {
 
         addCommands(
 
             new SequentialCommandGroup(
-                new Score(),
+                new ConeScore(),
                 new TimedDrive(1.5, -0.50, -0.50),
                 new TimedDrive(1.5, -0.4, -0.4),
                 new TimedDrive(1.5, 0.50, 0.50),

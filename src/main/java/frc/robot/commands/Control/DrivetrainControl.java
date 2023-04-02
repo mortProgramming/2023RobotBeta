@@ -81,16 +81,32 @@ public class DrivetrainControl extends CommandBase {
   //     direction * Logic.modifySquareAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()));
   // }
 
-    if(direction > 0) {
+   if(direction > 0) {
     drivetrain.setFullDrive(
-      sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()),
-      sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()));
+      sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), 1),
+      sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), 1));
     }
     else {
       drivetrain.setFullDrive(
-      -sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()),
-      -sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()));
+      -sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), 1),
+      -sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), 1));
     }
+
+// this one
+    // if(direction > 0) {
+    // drivetrain.setFullDrive(
+    //   sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()),
+    //   sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()));
+    // }
+    // else {
+    //   drivetrain.setFullDrive(
+    //   -sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()),
+    //   -sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()));
+    // }
+
+    // drivetrain.setArcadeDrive(
+    //   direction * sensitivity * Control.getLeftJoystickY(),
+    //   direction * sensitivity * Control.getLeftControllerJoystickZ());
 
     // System.out.println(direction);
   }

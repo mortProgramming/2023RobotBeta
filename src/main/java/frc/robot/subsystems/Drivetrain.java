@@ -9,7 +9,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.SerialPort;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.Control.DrivetrainControl;
 import static frc.robot.util.Constants.*;
@@ -41,12 +42,20 @@ public class Drivetrain extends SubsystemBase{
     private double sensitivity;
 
     private boolean commandOff;
+
+    private MotorControllerGroup leftDrive, rightDrive;
+    private DifferentialDrive drive;
     
     private Drivetrain() {
         masterLeftTalon = new CANSparkMax(MASTER_LEFT_TALON, MotorType.kBrushless);
         masterRightTalon = new CANSparkMax(MASTER_RIGHT_TALON, MotorType.kBrushless);
         followLeftTalon = new CANSparkMax(FOLLOW_LEFT_TALON, MotorType.kBrushless);
         followRightTalon = new CANSparkMax(FOLLOW_RIGHT_TALON, MotorType.kBrushless);
+
+        leftDrive = new MotorControllerGroup(masterLeftTalon, followLeftTalon);
+        rightDrive = new MotorControllerGroup(masterRightTalon, followRightTalon);
+
+        drive = new DifferentialDrive(leftDrive, rightDrive);
 
         followLeftTalon.follow(masterLeftTalon);
         followRightTalon.follow(masterRightTalon);
@@ -140,6 +149,10 @@ public class Drivetrain extends SubsystemBase{
         masterLeftTalon.set(leftMotorSpeed);
         masterRightTalon.set(rightMotorSpeed);
     }
+
+    // public void setArcadeDrive(double yAxis, double rotation) {
+    //     drive.arcadeDrive(yAxis, rotation);
+    // }
 
     // public void setDirectionForward() {
     //     direction = 1;

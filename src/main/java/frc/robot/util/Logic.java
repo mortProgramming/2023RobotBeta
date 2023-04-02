@@ -130,11 +130,11 @@ public class Logic {
     // }
 
     public static double armMotorPositionToDegrees(double encoderValue) {
-        return (encoderValue + ARM_MOTOR_ENCODER_TO_0_DEGREES) / ARM_POSITION_TO_DEGREES;
+        return (encoderValue + ARM_MOTOR_ENCODER_TO_0_DEGREES) * ARM_POSITION_TO_DEGREES;
     }
 
     public static double armMotorDegreesToPosition(double degrees) {
-        return (degrees * ARM_POSITION_TO_DEGREES) - ARM_MOTOR_ENCODER_TO_0_DEGREES;
+        return (degrees / ARM_POSITION_TO_DEGREES) - ARM_MOTOR_ENCODER_TO_0_DEGREES;
     }
 
     public static double scale(double scalingValue, double constant) {

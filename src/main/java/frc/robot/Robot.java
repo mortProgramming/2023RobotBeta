@@ -78,6 +78,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Roll", Drivetrain.getRoll());
     SmartDashboard.putNumber("Yaw", Drivetrain.getYaw());
     SmartDashboard.putNumber("Encoder", armMotor.getArmMotorVal());
+    SmartDashboard.putBoolean("EncoderConnected", armMotor.getEncoderThere());
     SmartDashboard.putNumber("Degrees", Logic.armMotorPositionToDegrees(armMotor.getArmMotorVal()));
     SmartDashboard.putNumber("Pressure", pneumaticsHub.getPressure());
     SmartDashboard.updateValues();
@@ -86,10 +87,14 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    lights.setLights(0);
+  }
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    lights.setLights(0);
+  }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override

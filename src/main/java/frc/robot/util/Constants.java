@@ -28,7 +28,6 @@ public final class Constants {
   public static final int LIGHT_3 = 3;
 
   public static final int ENCODER_1 = 8;
-  public static final int ENCODER_2 = 9;
 
   public static final int PNEUMATIC_PORT = 10;
   public static final int COMPRESSER_MIN_PRESSURE = 100;
@@ -48,11 +47,11 @@ public final class Constants {
   public static final int LEFT_CLAW_MOTOR = 7;
   public static final int RIGHT_CLAW_MOTOR = 8;
 
-  public static final double ARM_MOTOR_ENCODER_MIN = -470;
-  public static final double ARM_MOTOR_ENCODER_TO_0_DEGREES = -5;
+  public static final double ARM_MOTOR_ENCODER_MIN = -0;
+  public static final double ARM_MOTOR_ENCODER_TO_0_DEGREES = -0.8;
   public static final double ARM_IN_SIN_CONSTANT = 0.05;
   public static final double ARM_OUT_SIN_CONSTANT = 0.05;
-  public static final double ARM_POSITION_TO_DEGREES = 6;
+  public static final double ARM_POSITION_TO_DEGREES = 360;
 
 
   public static final double DEAD_BAND = 0.03;

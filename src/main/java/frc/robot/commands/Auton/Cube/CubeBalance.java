@@ -1,18 +1,18 @@
-package frc.robot.commands.Auton;
+package frc.robot.commands.Auton.Cube;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Assistance.Balance;
-import frc.robot.commands.Called.Score;
-import frc.robot.commands.Called.TimedDrive;
+import frc.robot.commands.Called.Arm.CubeScore;
+import frc.robot.commands.Called.Drivetrain.TimedDrive;
 
-public class ScoreBalance extends SequentialCommandGroup {
+public class CubeBalance extends SequentialCommandGroup {
 
-    public ScoreBalance() {
+    public CubeBalance() {
 
         addCommands(
 
             new SequentialCommandGroup(
-                new Score(),
+                new CubeScore(),
                 new TimedDrive(1.5, 0.50, 0.50),
                 new Balance()
             )

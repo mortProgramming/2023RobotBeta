@@ -1,6 +1,5 @@
 package frc.robot.commands.Control;
 import frc.robot.subsystems.ClawMotor;
-import frc.robot.util.Control;
 import frc.robot.util.Logic;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import static frc.robot.util.Constants.*;
@@ -8,25 +7,25 @@ import static frc.robot.util.Constants.*;
 public class ClawMotorControl extends CommandBase {
   ClawMotor clawMotor;
 
-  public ClawMotorControl() {
-  clawMotor = ClawMotor.getInstance(); 
+  public double speed;
+
+  public ClawMotorControl(double speed) {
+    this.speed = speed;
+
+    clawMotor = ClawMotor.getInstance(); 
 
     addRequirements(clawMotor);
   }
 
+  public void initialize() {
+    clawMotor.setClawMotor(speed);
+  }
+
   public void execute() {
-    if(Control.getXboxController().getXButton()) {
-        clawMotor.setClawMotor(1);
-    }
-    else if(Control.getXboxController().getBButton()) {
-        clawMotor.setClawMotor(-1);
-    }
-    else {
-        clawMotor.setClawMotor(0);
-    }
+    clawMotor.setClawMotor(speed);
   }
 
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

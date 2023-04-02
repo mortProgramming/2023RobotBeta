@@ -12,8 +12,8 @@ public class ClawMotor extends SubsystemBase{
     private static CANSparkMax rightMotor;
 
     private ClawMotor() {
-        leftMotor = new CANSparkMax(LEFT_ARM_MOTOR, MotorType.kBrushless);
-        rightMotor = new CANSparkMax(RIGHT_ARM_MOTOR, MotorType.kBrushless);
+        leftMotor = new CANSparkMax(LEFT_CLAW_MOTOR, MotorType.kBrushless);
+        rightMotor = new CANSparkMax(RIGHT_CLAW_MOTOR, MotorType.kBrushless);
     }
     
     public static ClawMotor getInstance() {
@@ -24,7 +24,7 @@ public class ClawMotor extends SubsystemBase{
     }
 
     public void setClawMotor(double setting) {
-        leftMotor.set(setting);
+        leftMotor.set(-setting);
         rightMotor.set(setting);
     }
 }

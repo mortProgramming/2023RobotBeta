@@ -1,4 +1,4 @@
-package frc.robot.commands.Called;
+package frc.robot.commands.Called.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmMotor;
