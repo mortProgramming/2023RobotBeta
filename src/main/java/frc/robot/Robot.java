@@ -13,7 +13,7 @@ import frc.robot.subsystems.ArmMotor;
 import frc.robot.subsystems.ArmPiston;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Lights;
+import frc.robot.subsystems.Extras;
 import frc.robot.subsystems.PneumaticsHub;
 import frc.robot.util.Control;
 import frc.robot.util.Logic;
@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
     private static ArmMotor armMotor;
     private static ArmPiston armPiston;
     private static Claw claw;
-    private static Lights lights;
+    private static Extras extras;
     private static PneumaticsHub pneumaticsHub;
 
   /**
@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
         armPiston = ArmPiston.getInstance();
         armMotor = ArmMotor.getInstance();
         claw = Claw.getInstance();
-        lights = Lights.getInstance();
+        extras = Extras.getInstance();
         pneumaticsHub = PneumaticsHub.getInstance();
   }
 
@@ -81,6 +81,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("EncoderConnected", armMotor.getEncoderThere());
     SmartDashboard.putNumber("Degrees", Logic.armMotorPositionToDegrees(armMotor.getArmMotorVal()));
     SmartDashboard.putNumber("Pressure", pneumaticsHub.getPressure());
+    SmartDashboard.putNumber("Voltage", extras.getVoltage());
     SmartDashboard.updateValues();
     CommandScheduler.getInstance().run();
   }
@@ -88,12 +89,12 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    lights.setLights(0);
+    extras.setLights(0);
   }
 
   @Override
   public void disabledPeriodic() {
-    lights.setLights(0);
+    extras.setLights(0);
   }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */

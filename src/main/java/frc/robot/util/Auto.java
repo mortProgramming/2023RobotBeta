@@ -69,18 +69,18 @@ public class Auto {
 		autoChooser.addOption("JustCube", new CubeScore());
 		autoChooser.addOption("JustTaxi", new Taxi());
 		autoChooser.addOption("JustBalance", new JustBalance());
-		autoChooser.addOption("PieceTaxi", new PieceTaxi());
-		autoChooser.addOption("PieceBalance", new PieceBalance());
+		// autoChooser.addOption("PieceTaxi", new PieceTaxi());
+		// autoChooser.addOption("PieceBalance", new PieceBalance());
 		autoChooser.addOption("ConeTaxi", new ConeTaxi());
 		autoChooser.addOption("ConeBalance", new ConeBalance());
-		autoChooser.addOption("LeftConeTaxiGrab", new LeftConeTaxiGrab());
-		autoChooser.addOption("HighCubeScore", new HighCubeScore());
-		autoChooser.addOption("HighCubeScoreTaxi", new HighCubeTaxi());
-		autoChooser.addOption("HighCubeScoreBalance", new HighCubeBalance());
+		// autoChooser.addOption("LeftConeTaxiGrab", new LeftConeTaxiGrab());
+		autoChooser.addOption("JustHighCube", new HighCubeScore());
+		autoChooser.addOption("HighCubeTaxi", new HighCubeTaxi());
+		autoChooser.addOption("HighCubeBalance", new HighCubeBalance());
 		// autoChooser.addOption("Tester1", new Tester1());
 		// autoChooser.addOption("Tester2", new Tester2());
 		// autoChooser.addOption("Tester3", new Tester3());
-		autoChooser.addOption("ConeTaxiBalance", new ConeTaxiBalance());
+		// autoChooser.addOption("ConeTaxiBalance", new ConeTaxiBalance());
 		// autoChooser.setDefaultOption("Test", autoFromPathGroup("Test"));
 	}
 

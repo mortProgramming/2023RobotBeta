@@ -18,7 +18,7 @@ public class CubeScore extends SequentialCommandGroup {
                 new ArmPistonControl(0),
                 new TimedArm(0.95, -0.3),
                 new ParallelCommandGroup(
-                    new TimedArm(1, -0.045),
+                    new TimedArm(2, -0.045),
                     new SequentialCommandGroup(
                         new ArmPistonControl(1),
                         new Wait(1),

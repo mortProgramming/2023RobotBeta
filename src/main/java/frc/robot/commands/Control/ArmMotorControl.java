@@ -42,18 +42,14 @@ public class ArmMotorControl extends CommandBase {
             direction = -1;
         }
 
-        // armMotor.setArmMotor(Control.getLeftControllerJoystickY());
-
-        // armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY());
-
-        // if(armPiston.getArmPiston() == DoubleSolenoid.Value.kForward) {
-        //     armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY() + 
-        //     ARM_IN_SIN_CONSTANT * Logic.armStabalize(armMotor.getArmMotorVal()));
-        // }
-        // else {
-        //     armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY() + 
-        //     ARM_OUT_SIN_CONSTANT * Logic.armStabalize(armMotor.getArmMotorVal()));
-        // }
+        if(armPiston.getArmPiston() == DoubleSolenoid.Value.kForward) {
+            armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY() + 
+            ARM_IN_SIN_CONSTANT * Logic.armStabalize(armMotor.getArmMotorVal()));
+        }
+        else {
+            armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY() + 
+            ARM_OUT_SIN_CONSTANT * Logic.armStabalize(armMotor.getArmMotorVal()));
+        }
 
         // if(armPiston.getArmPiston() == DoubleSolenoid.Value.kForward) {
         //     armMotor.setArmMotor((direction * Control.getLeftControllerJoystickY() * 
@@ -79,8 +75,8 @@ public class ArmMotorControl extends CommandBase {
         //     ));
         // }
 
-         armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY());
-        //armMotor.setArmMotor(armMotor.simplefeedford().calculate(Control.getLeftControllerJoystickY()));
+        //  armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY());
+        // armMotor.setArmMotor(armMotor.getArmFeedForward().calculate(Control.getLeftControllerJoystickY()));
 
         // System.out.println(armMotor.getArmMotorVal());
     }

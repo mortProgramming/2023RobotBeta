@@ -16,14 +16,14 @@ public class HighCubeScore extends SequentialCommandGroup {
             new SequentialCommandGroup(   
                 new ClawControl(1),
                 new ArmPistonControl(0),
-                new TimedArm(1.09, -0.3),
+                new TimedArm(1.1, -0.3),  //1.09
                 new ParallelCommandGroup(
                     new TimedArm(2, -0.045),
                     new SequentialCommandGroup(
                         new ArmPistonControl(1),
                         new Wait(1),
                         new ArmPistonControl(0),
-                        new ClawMotorControl(0.25)
+                        new ClawMotorControl(0.3) //0.25
                     )
                 ),
                 new ClawMotorControl(0),

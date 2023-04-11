@@ -9,16 +9,13 @@ import frc.robot.commands.Called.Drivetrain.RollBalance;
 import frc.robot.subsystems.ArmPiston;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.ClawMotor;
-import frc.robot.subsystems.Lights;
+import frc.robot.subsystems.Extras;
 import frc.robot.commands.Control.ArmMotorControl;
-import frc.robot.commands.Control.ArmPistonControl;
 import frc.robot.commands.Control.ClawControl;
 import frc.robot.commands.Control.ClawMotorControl;
 import frc.robot.commands.Control.DrivetrainControl;
 import frc.robot.commands.Control.LightsControl;
 import frc.robot.subsystems.Drivetrain;
-
-import javax.net.ssl.TrustManager;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -41,7 +38,7 @@ public class Control {
     private static ArmPiston armPiston;
     private static Claw claw;
     public static ClawMotor clawMotor;
-    private static Lights lights;
+    private static Extras extras;
 
 	public static void init() {
 		leftJoystick = new CommandJoystick(LEFT_JOYSTICK);
@@ -57,7 +54,7 @@ public class Control {
         armMotor = ArmMotor.getInstance();
         claw = Claw.getInstance();
         clawMotor = ClawMotor.getInstance();
-        lights = Lights.getInstance();
+        extras = Extras.getInstance();
 	}
 
     public static void setDefaultCommands() {
@@ -95,7 +92,7 @@ public class Control {
 
         xboxController.a().onTrue(new ClawControl(1));
         xboxController.y().onTrue(new ClawControl(0));
-        xboxController.start().onTrue(new ArmToDegree(90));
+        // xboxController.start().onTrue(new ArmToDegree(90));
         xboxController.rightStick().onTrue(new ArmMotorControl());
 
 
@@ -103,6 +100,8 @@ public class Control {
         xboxController.b().onFalse(new ClawMotorControl(0));
         xboxController.x().onTrue(new ClawMotorControl(-0.5));
         xboxController.x().onFalse(new ClawMotorControl(0));
+        xboxController.start().onTrue(new ClawMotorControl(1));
+        xboxController.start().onFalse(new ClawMotorControl(0));
 
         // xboxController.y().toggleOnTrue(Commands.startEnd(armPiston::trueArmPiston, armPiston::falseArmPiston, armPiston));
 
@@ -117,6 +116,8 @@ public class Control {
         xboxController.pov(90).onTrue(new LightsControl(3));
         xboxController.pov(180).onTrue(new LightsControl(4));
         xboxController.pov(270).onTrue(new LightsControl(2));
+
+        // xboxController.back().toggleOnTrue()
     }
 
     public static double getLeftJoystickY() {

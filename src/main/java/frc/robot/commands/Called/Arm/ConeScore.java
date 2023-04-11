@@ -13,10 +13,10 @@ public class ConeScore extends SequentialCommandGroup {
 
         addCommands(
 
-            new SequentialCommandGroup(   
+            new SequentialCommandGroup(
                 new ClawControl(1),
                 new ArmPistonControl(0),
-                new TimedArm(1, -0.3),
+                new TimedArm(1.15, -0.3),
                 new ParallelCommandGroup(
                     new TimedArm(0.75, -0.045),
                     new SequentialCommandGroup(

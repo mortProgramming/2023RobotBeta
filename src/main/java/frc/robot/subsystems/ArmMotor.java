@@ -33,7 +33,8 @@ public class ArmMotor extends SubsystemBase{
         armMotorDegreeController =  new PIDController(8, 0.5, 0);
         armMotorDegreeController.setTolerance(0.05);
 
-        //armFeedForward = new SimpleMotorFeedforward(0.059774, 13.034, 0.62803); not working
+        //not working
+        armFeedForward = new SimpleMotorFeedforward(0.059774, 13.034, 0.62803);
     }
 
     public static ArmMotor getInstance() {
@@ -48,13 +49,13 @@ public class ArmMotor extends SubsystemBase{
     }
 
     public void setArmMotor(double speed) {
-        leftMotor.set(speed);
-        rightMotor.set(speed);
+        leftMotor.set(0.5 * speed);
+        rightMotor.set(0.5 * speed);
     }
 
     public void setAutoArmMotor(double speed) {
-        leftMotor.set(speed * 0.5);
-        rightMotor.set(speed * 0.5);
+        leftMotor.set(speed);
+        rightMotor.set(speed);
     }
 
     public PIDController getArmDegreeController() {
@@ -69,7 +70,7 @@ public class ArmMotor extends SubsystemBase{
         return encoder.isConnected();
     }
 
-    public SimpleMotorFeedforward simplefeedford() {
+    public SimpleMotorFeedforward getArmFeedForward() {
         return armFeedForward;
     }
     // public void setDirectionForward() {

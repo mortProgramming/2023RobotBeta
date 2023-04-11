@@ -1,26 +1,22 @@
 package frc.robot.commands.Control;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Lights;
+import frc.robot.subsystems.Extras;
 
 public class LightsControl extends CommandBase{
-    private Lights lights;
-    private boolean setting;
+    private Extras extras;
     private int settingNum;
 
-    // public LightsControl(int settingNum, boolean setting) {
     public LightsControl(int settingNum) {
-        // this.setting = setting;
         this.settingNum = settingNum;
 
-        lights = Lights.getInstance();
+        extras = Extras.getInstance();
 
-        addRequirements(lights);
+        addRequirements(extras);
     }
 
     public void initialize() {
-        // lights.setLights(lightNum, setting);
-        lights.setLights(settingNum);
+        extras.setLights(settingNum);
     }
 
     public boolean isFinished() {
