@@ -1,3 +1,6 @@
+
+
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -53,11 +56,11 @@ public class Robot extends TimedRobot {
 		CameraServer.startAutomaticCapture();
 
     drivetrain = Drivetrain.getInstance();
-        armPiston = ArmPiston.getInstance();
-        armMotor = ArmMotor.getInstance();
-        claw = Claw.getInstance();
-        extras = Extras.getInstance();
-        pneumaticsHub = PneumaticsHub.getInstance();
+    armPiston = ArmPiston.getInstance();
+    armMotor = ArmMotor.getInstance();
+    claw = Claw.getInstance();
+    extras = Extras.getInstance();
+    pneumaticsHub = PneumaticsHub.getInstance();
   }
 
   /**
@@ -81,7 +84,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("EncoderConnected", armMotor.getEncoderThere());
     SmartDashboard.putNumber("Degrees", Logic.armMotorPositionToDegrees(armMotor.getArmMotorVal()));
     SmartDashboard.putNumber("Pressure", pneumaticsHub.getPressure());
-    SmartDashboard.putNumber("Voltage", extras.getVoltage());
+    // SmartDashboard.putNumber("Voltage", extras.getVoltage());
     SmartDashboard.updateValues();
     CommandScheduler.getInstance().run();
   }

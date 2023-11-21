@@ -77,7 +77,7 @@ public class Extras extends SubsystemBase {
         powerDistribution.setSwitchableChannel(power);
     }
 
-    public double getVoltage() {
-        return powerDistribution.getVoltage();
-    }
+    // public double getVoltage() {
+    //     return powerDistribution.getVoltage();
+    // }
 }

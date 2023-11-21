@@ -14,7 +14,7 @@ public class DrivetrainControl extends CommandBase {
   private boolean newButton1 = false;
   private boolean oldButton1 = true; //Right trigger
   private boolean pressedButton1 = false;
-  private boolean alternateButton1 = false;
+  private boolean alternateButton1 = true;
 
   private boolean newButton2 = false; //Button 4
   private boolean oldButton2 = true;
@@ -81,32 +81,32 @@ public class DrivetrainControl extends CommandBase {
   //     direction * Logic.modifySquareAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()));
   // }
 
-   if(direction > 0) {
+  //this one
+  //  if(direction > 0) {
+  //   drivetrain.setFullDrive(
+  //     sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), 1),
+  //     sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), 1));
+  //   }
+  //   else {
+  //     drivetrain.setFullDrive(
+  //     -sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), 1),
+  //     -sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), 1));
+  //   }
+
+    if(direction > 0) {
     drivetrain.setFullDrive(
-      sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), 1),
-      sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), 1));
+      sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()),
+      sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()));
     }
     else {
       drivetrain.setFullDrive(
-      -sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), 1),
-      -sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), 1));
+      -sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()),
+      -sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()));
     }
 
-// this one
-    // if(direction > 0) {
-    // drivetrain.setFullDrive(
-    //   sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()),
-    //   sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()));
-    // }
-    // else {
-    //   drivetrain.setFullDrive(
-    //   -sensitivity * Logic.modifyAxis(-Control.getRightJoystickY(), Control.getLeftThrottle()),
-    //   -sensitivity * Logic.modifyAxis(-Control.getLeftJoystickY(), Control.getLeftThrottle()));
-    // }
-
     // drivetrain.setArcadeDrive(
-    //   direction * sensitivity * Control.getLeftJoystickY(),
-    //   direction * sensitivity * Control.getLeftControllerJoystickZ());
+    //   direction * sensitivity * Control.getRightJoystickY(),
+    //   direction * sensitivity * Control.getRightControllerJoystickZ());
 
     // System.out.println(direction);
   }

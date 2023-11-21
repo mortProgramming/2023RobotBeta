@@ -32,4 +32,7 @@ public class Limelight extends SubsystemBase{
     public static double limeLightArea(){
         return table.getEntry("ta").getDouble(0);
     }
+    // public static void limeLightLight(boolean on) {
+    //     table.setEntry("leds");
+    // }
 }

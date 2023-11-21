@@ -141,8 +141,8 @@ public class Drivetrain extends SubsystemBase{
     }
     
     public void setDrive(double leftMotorSpeed, double rightMotorSpeed) {
-        masterLeftTalon.set(-leftMotorSpeed * Control.getLeftThrottle());
-        masterRightTalon.set(-rightMotorSpeed * Control.getLeftThrottle());
+        masterLeftTalon.set(leftMotorSpeed * Control.getLeftThrottle());
+        masterRightTalon.set(rightMotorSpeed * Control.getLeftThrottle());
     }
     
     public void setFullDrive(double leftMotorSpeed, double rightMotorSpeed) {
@@ -150,9 +150,17 @@ public class Drivetrain extends SubsystemBase{
         masterRightTalon.set(rightMotorSpeed);
     }
 
-    // public void setArcadeDrive(double yAxis, double rotation) {
-    //     drive.arcadeDrive(yAxis, rotation);
-    // }
+    public void setLeftDrive(double leftMotorSpeed) {
+        masterLeftTalon.set(leftMotorSpeed);
+    }
+
+    public void setRightDrive(double rightMotorSpeed) {
+        masterRightTalon.set(rightMotorSpeed);
+    }
+
+    public void setArcadeDrive(double yAxis, double rotation) {
+        drive.arcadeDrive(yAxis, rotation);
+    }
 
     // public void setDirectionForward() {
     //     direction = 1;

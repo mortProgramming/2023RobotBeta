@@ -4,129 +4,135 @@ import static frc.robot.util.Constants.*;
 
 public class Logic {
 
-    public static boolean pressedLogic(boolean newInput, boolean oldInput){
-        if(newInput == true && oldInput == false){
+    public static boolean pressedLogic(boolean newInput, boolean oldInput) {
+        if (newInput == true && oldInput == false) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public static boolean unPressedLogic(boolean newInput, boolean oldInput){
-        if(newInput == false && oldInput == true){
+    public static boolean unPressedLogic(boolean newInput, boolean oldInput) {
+        if (newInput == false && oldInput == true) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public static boolean pressed2ToggleLogic(boolean pressed, boolean oldAlternate){
-        if(pressed == true){
-            if(oldAlternate == true){
+    public static boolean pressed2ToggleLogic(boolean pressed, boolean oldAlternate) {
+        if (pressed == true) {
+            if (oldAlternate == true) {
                 return false;
-            }
-            else{
+            } else {
                 return true;
             }
-        }
-        else{
+        } else {
             return oldAlternate;
         }
     }
 
-    public static int pressedMultiToggleLogic(boolean pressed, int oldAlternate, int numPressed){
-        if(pressed == true){
-            if(oldAlternate < numPressed){
+    public static int pressedMultiToggleLogic(boolean pressed, int oldAlternate, int numPressed) {
+        if (pressed == true) {
+            if (oldAlternate < numPressed) {
                 return (oldAlternate + 1);
-            }
-            else{
+            } else {
                 return 1;
             }
-        }
-        else{
+        } else {
             return oldAlternate;
         }
     }
 
-    public static boolean lessGreater(double begin, double current, double end){
-       if(current > begin && current < end){
-        return true;
-       }
-       else{
-        return false;
-       }
+    public static boolean lessGreater(double begin, double current, double end) {
+        if (current > begin && current < end) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public static int plusNeg(double input){
-        if(input < 0){
+    public static int plusNeg(double input) {
+        if (input < 0) {
             return -1;
-        }
-        else if(input == 0){
+        } else if (input == 0) {
             return 0;
-        }
-        else{
+        } else {
             return 1;
         }
     }
 
     public static double deadband(double value, double deadband) {
 
-		if (Math.abs(value) > deadband) {
+        if (Math.abs(value) > deadband) {
 
-			if (value > 0.0) {
-				return (value - deadband) / (1.0 - deadband);
-			} 
-            else {
-				return (value + deadband) / (1.0 - deadband);
-			}
-		} 
-        
+            if (value > 0.0) {
+                return (value - deadband) / (1.0 - deadband);
+            } else {
+                return (value + deadband) / (1.0 - deadband);
+            }
+        }
+
         else {
-			return 0.0;
-		}
-	}
+            return 0.0;
+        }
+    }
+
+    public static double unScaledDeadband(double value, double deadband) {
+
+        if (Math.abs(value) > deadband) {
+            return (value);
+        }
+
+        else {
+            return 0.0;
+        }
+    }
 
     public static double modifyAxis(double value, double throttleValue) {
-		value = deadband(value, DEAD_BAND);
+        value = deadband(value, DEAD_BAND);
 
-		throttleValue = (throttleValue + 1) / 2;
+        throttleValue = (throttleValue + 1) / 2;
 
-		return value * (throttleValue * (MAX_THROTTLE - MIN_THROTTLE) + MIN_THROTTLE);
-	}
+        return value * (throttleValue * (MAX_THROTTLE - MIN_THROTTLE) + MIN_THROTTLE);
+    }
 
     public static double modifySquareAxis(double value, double throttleValue) {
-		value = deadband(value, DEAD_BAND);
+        value = deadband(value, DEAD_BAND);
 
-		// Square the axis
-		value = Math.copySign(value * value, value);
+        // Square the axis
+        value = Math.copySign(value * value, value);
 
-		throttleValue = (throttleValue + 1) / 2;
+        throttleValue = (throttleValue + 1) / 2;
 
-		return value * (throttleValue * (MAX_THROTTLE - MIN_THROTTLE) + MIN_THROTTLE);
-	}
+        return value * (throttleValue * (MAX_THROTTLE - MIN_THROTTLE) + MIN_THROTTLE);
+    }
 
     public static double modifyCubicAxis(double value, double throttleValue) {
-		value = deadband(value, DEAD_BAND);
+        value = deadband(value, DEAD_BAND);
 
-		value = Math.copySign(value * value * value, value);
+        value = Math.copySign(value * value * value, value);
 
-		throttleValue = (throttleValue + 1) / 2;
+        throttleValue = (throttleValue + 1) / 2;
 
-		return value * (throttleValue * (MAX_THROTTLE - MIN_THROTTLE) + MIN_THROTTLE);
-	}
+        return value * (throttleValue * (MAX_THROTTLE - MIN_THROTTLE) + MIN_THROTTLE);
+    }
 
+    // public static double armStabalize(double encoderValue) {
+    // return Math.sin(Math.toRadians(armMotorPositionToDegrees(encoderValue)));
+    // }
     public static double armStabalize(double encoderValue) {
-        return Math.sin(Math.toRadians(armMotorPositionToDegrees(encoderValue)));
+        return unScaledDeadband(Math.sin(Math.toRadians(armMotorPositionToDegrees(encoderValue))), 0);
     }
 
     // public static double armMotorPositionToDegrees(double encoderValue) {
-    //     return (encoderValue - ARM_MOTOR_ENCODER_MIN) / ARM_POSITION_TO_DEGREES + ARM_MOTOR_ENCODER_TO_0_DEGREES;
+    // return (encoderValue - ARM_MOTOR_ENCODER_MIN) / ARM_POSITION_TO_DEGREES +
+    // ARM_MOTOR_ENCODER_TO_0_DEGREES;
     // }
 
     // public static double armMotorDegreesToPosition(double degrees) {
-    //     return ((degrees - ARM_MOTOR_ENCODER_TO_0_DEGREES) * ARM_POSITION_TO_DEGREES) + ARM_MOTOR_ENCODER_MIN;
+    // return ((degrees - ARM_MOTOR_ENCODER_TO_0_DEGREES) * ARM_POSITION_TO_DEGREES)
+    // + ARM_MOTOR_ENCODER_MIN;
     // }
 
     public static double armMotorPositionToDegrees(double encoderValue) {
@@ -138,11 +144,10 @@ public class Logic {
     }
 
     public static double scale(double scalingValue, double constant) {
-        if(constant > 0) {
-            return scalingValue * (1 - constant) + constant; 
-        }
-        else {
-            return scalingValue * (1 + constant) - constant; 
+        if (constant > 0) {
+            return scalingValue * (1 - constant) + constant;
+        } else {
+            return scalingValue * (1 + constant) - constant;
         }
     }
 }

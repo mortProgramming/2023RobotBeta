@@ -42,12 +42,23 @@ public class ArmMotorControl extends CommandBase {
             direction = -1;
         }
 
+        // if(armPiston.getArmPiston() == DoubleSolenoid.Value.kForward) {
+        //     armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY() + 
+        //     ARM_IN_SIN_CONSTANT * Logic.armStabalize(armMotor.getArmMotorVal()));
+        // }
+        // else {
+        //     armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY() + 
+        //     ARM_OUT_SIN_CONSTANT * Logic.armStabalize(armMotor.getArmMotorVal()));
+        // }
+
         if(armPiston.getArmPiston() == DoubleSolenoid.Value.kForward) {
-            armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY() + 
+            armMotor.setArmMotor(direction * 
+            Logic.deadband(Control.getLeftControllerJoystickY(), 0.05) + 
             ARM_IN_SIN_CONSTANT * Logic.armStabalize(armMotor.getArmMotorVal()));
         }
         else {
-            armMotor.setArmMotor(direction * Control.getLeftControllerJoystickY() + 
+            armMotor.setArmMotor(direction * 
+            Logic.deadband(Control.getLeftControllerJoystickY(), 0.05) + 
             ARM_OUT_SIN_CONSTANT * Logic.armStabalize(armMotor.getArmMotorVal()));
         }
 

@@ -88,11 +88,13 @@ public class Control {
 
         // rightJoystick.button(2).whileTrue(new Balance());
         rightJoystick.button(2).whileTrue(new RollBalance());
-        rightJoystick.button(3).whileTrue(new Stop());
+        // rightJoystick.button(3).whileTrue(new Stop());
+        rightJoystick.button(3).toggleOnTrue((new Stop()));
+
 
         xboxController.a().onTrue(new ClawControl(1));
         xboxController.y().onTrue(new ClawControl(0));
-        // xboxController.start().onTrue(new ArmToDegree(90));
+        xboxController.start().onTrue(new ArmToDegree(90));
         xboxController.rightStick().onTrue(new ArmMotorControl());
 
 
@@ -100,8 +102,8 @@ public class Control {
         xboxController.b().onFalse(new ClawMotorControl(0));
         xboxController.x().onTrue(new ClawMotorControl(-0.5));
         xboxController.x().onFalse(new ClawMotorControl(0));
-        xboxController.start().onTrue(new ClawMotorControl(1));
-        xboxController.start().onFalse(new ClawMotorControl(0));
+        // xboxController.start().onTrue(new ClawMotorControl(1));
+        // xboxController.start().onFalse(new ClawMotorControl(0));
 
         // xboxController.y().toggleOnTrue(Commands.startEnd(armPiston::trueArmPiston, armPiston::falseArmPiston, armPiston));
 
@@ -123,8 +125,8 @@ public class Control {
     public static double getLeftJoystickY() {
         return leftJoystick.getY();
     }
-    public static double getLeftControllerJoystickZ() {
-        return leftJoystick.getTwist();
+    public static double getRightControllerJoystickZ() {
+        return rightJoystick.getTwist();
     }
     public static double getLeftThrottle() {
         return leftJoystick.getThrottle();

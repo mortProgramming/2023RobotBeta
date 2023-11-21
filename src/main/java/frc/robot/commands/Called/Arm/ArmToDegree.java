@@ -3,6 +3,7 @@ package frc.robot.commands.Called.Arm;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmMotor;
 import frc.robot.util.Logic;
+import static frc.robot.util.Constants.*;
 
 public class ArmToDegree extends CommandBase {
     ArmMotor armMotor;
@@ -19,11 +20,11 @@ public class ArmToDegree extends CommandBase {
     }
 
     public void initialize() {
-        wantedPosition = Logic.armMotorDegreesToPosition(wantedDegrees);
+        wantedPosition = wantedDegrees;
     }
 
     public void execute() {
-        armMotor.setAutoArmMotor(-armMotor.getArmDegreeController().calculate(armMotor.getArmMotorVal(), wantedPosition));
+        armMotor.setAutoArmMotor(-armMotor.getArmDegreeController().calculate(Logic.armMotorPositionToDegrees(armMotor.getArmMotorVal()), wantedPosition));
     }
 
     public boolean isFinished() {

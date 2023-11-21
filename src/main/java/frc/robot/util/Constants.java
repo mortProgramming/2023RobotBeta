@@ -4,6 +4,8 @@
 
 package frc.robot.util;
 
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -59,4 +61,7 @@ public final class Constants {
   public static final double MIN_THROTTLE = 0;
   public static final double MAX_THROTTLE = 1;
   public static final double LOW_SENSITIVITY = 0.3;
+
+
+  public static final TrapezoidProfile.Constraints constraints = new TrapezoidProfile.Constraints(0.00000000000000001, 0.000000000000001);
 }
